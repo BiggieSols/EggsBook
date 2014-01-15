@@ -10,6 +10,24 @@ class User < ActiveRecord::Base
   has_many :friendships, foreign_key: :user_id
   has_many :friends, through: :friendships, source: :friended_user
 
+  has_many :made_friend_requests, 
+              foreign_key: :user_id, 
+              class_name: "FriendRequest"
+
+  has_many :received_friend_requests, 
+              foreign_key: :friend_id, 
+              class_name: "FriendRequest"
+
+  has_many :friends_requested, 
+              through: :made_friend_requests, 
+              source: :requested_user
+
+  has_many :users_requesting_friendship, 
+              through: :received_friend_requests, 
+              source: :requesting_user
+
+
+
   def self.find_by_credentials(params={email: nil, password: nil})
     user = User.find_by_email(params[:email]);
     return user if user && user.is_password?(params[:password])
