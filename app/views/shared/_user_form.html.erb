@@ -1,0 +1,20 @@
+<% button_text = action == :new_user ? "Create Account" : "Sign In" %>
+<% url = action == :new_user ? users_url : session_url %>
+
+<form action="<%= url %>" method="POST">
+  <label for="user_email">Email</label>
+  <input  type="text" 
+          name="user[email]" 
+          value="<%= user.email %>" 
+          id="user_email">
+  <br>
+
+  <label for="user_password">Password</label>
+  <input  type="password" 
+          name="user[password]" 
+          value="<%= user.password %>" 
+          id="user_password">
+  <br>
+
+  <input type="submit" value="<%= button_text %>">
+</form>
