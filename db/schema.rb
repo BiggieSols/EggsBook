@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115183529) do
+ActiveRecord::Schema.define(:version => 20140115230838) do
+
+  create_table "foods", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "friend_requests", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -35,12 +41,25 @@ ActiveRecord::Schema.define(:version => 20140115183529) do
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
+  create_table "user_foods", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "food_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_foods", ["food_id"], :name => "index_user_foods_on_food_id"
+  add_index "user_foods", ["user_id", "food_id"], :name => "index_user_foods_on_user_id_and_food_id", :unique => true
+  add_index "user_foods", ["user_id"], :name => "index_user_foods_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",           :null => false
     t.string   "password_digest", :null => false
     t.string   "session_token",   :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "name"
+    t.text     "about_me"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
