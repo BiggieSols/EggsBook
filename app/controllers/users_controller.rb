@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  skip_before_filter :require_login, only: [:new, :create]
+
   def index
     @users = User.all
+    @users.delete(current_user)
   end
 
   def new

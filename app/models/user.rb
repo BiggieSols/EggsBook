@@ -26,8 +26,6 @@ class User < ActiveRecord::Base
               through: :received_friend_requests, 
               source: :requesting_user
 
-
-
   def self.find_by_credentials(params={email: nil, password: nil})
     user = User.find_by_email(params[:email]);
     return user if user && user.is_password?(params[:password])
@@ -49,5 +47,30 @@ class User < ActiveRecord::Base
 
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password);
+  end
+
+  def friendship_status_with(other_user_id)
+    case     
+    when self.is_friends_with(other_user_id)
+      return :friend
+    when self.has_friend_request_from(other_user_id)
+      return :requires_your_response
+    when self.has_requested_friendship_from(other_user_id)
+      return :requires_friend_response
+    else
+      return :none
+    end
+  end
+
+  def is_friends_with(other_user_id)
+    return self.friends.map(&:id).include?(other_user_id)
+  end
+
+  def has_friend_request_from(other_user_id)
+    return self.users_requesting_friendship.map(&:id).include?(other_user_id)
+  end
+
+  def has_requested_friendship_from(other_user_id)
+    return self.friends_requested.map(&:id).include?(other_user_id)
   end
 end

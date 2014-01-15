@@ -1,0 +1,35 @@
+<!-- note: requires a user_id -->
+
+<!--   def friendship_status_with(other_user_id)
+    case     
+    when self.is_friends_with(other_user_id)
+      return :friend
+    when self.has_friend_request_from(other_user_id)
+      return :requires_your_response
+    when self.has_requested_friendship_from(other_user_id)
+      return :requires_friend_response
+    else
+      return :none
+    end
+ -->
+<% status = current_user.friendship_status_with(other_user_id) %>
+<% case status %>
+  <% when :none %>
+  
+  <!-- form for link to add friend -->
+    <form action="<%= friend_requests_url %>" method="POST">
+      <input type="hidden" name="friend_request[friend_id]" value="<%= other_user_id %>">
+      <input type="submit" value="request friend">
+    </form>
+
+  <% when :friend %>
+    <span>you are friends!<span>
+
+  <% when :requires_your_response %>
+    <form action="<%= friendships_url %>" method="POST">
+      <input type="hidden" name="friendship[friend_id]" value="<%= other_user_id %>">
+      <input type="submit" value="confirm friend">
+    </form>
+  <% when :requires_friend_response %>
+    <span>waiting for request confirmation</span>
+<% end %>
