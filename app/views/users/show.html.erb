@@ -1,0 +1,9 @@
+<h1><%= @user.email %></h1>
+
+<ul>
+  <% @user.attributes.each do |attr| %>
+    <li>
+      <%= attr[0] %>: <%= attr[1] %>
+    </li>
+  <% end %>
+</ul>
