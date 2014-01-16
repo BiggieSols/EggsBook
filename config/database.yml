@@ -8,8 +8,6 @@ development:
   encoding: unicode
   database: EggsBook_development
   pool: 5
-  username: tempProject
-  password:
 
 
 # Warning: The database defined as "test" will be erased and
@@ -20,5 +18,3 @@ test:
   encoding: unicode
   database: EggsBook_development
   pool: 5
-  username: tempProject
-  password:
