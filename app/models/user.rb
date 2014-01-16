@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :favorite_food_ids
+  attr_accessible :email, :password, :favorite_food_ids, :name, :about_me
   attr_accessor :password
 
   before_validation :set_session_token, :set_password_digest, on: :create

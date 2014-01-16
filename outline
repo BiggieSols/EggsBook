@@ -1,0 +1,35 @@
+Eggsbook Outline
+
+Functionality
+  Pages
+    Profile
+    Feed
+    Post (shows the post and comments)
+      can include a photo or not. Every photo is actually just a post
+    Add Photo
+
+Rails
+  Models
+    User
+    Friendship
+    FriendRequest
+    Album
+    Post
+    Comment
+    PhotoTagging (join table for users and photos)
+    BreakfastFood
+    UserBreakfastFoods (join between user and breakfast_food tables)
+  Routes
+    User - everything + feed
+    Friendship - create, destroy, index (for current user)
+    FriendRequest - create, destroy, index (for current user, either requested by or requested to)
+    Album - new, create, destroy, edit, show
+    Post - new, create, destroy, show
+    Comment - create, destroy
+
+
+
+Special Features:
+    * Photo upload (how do we handle this? How do we load photos? Need to learn to use paperclip)
+    * Chat (will do this last)
+    * 
