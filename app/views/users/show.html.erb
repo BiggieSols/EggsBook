@@ -1,6 +1,8 @@
-<h1><%= @user.email %></h1>
+<h1><%= @user.name %></h1>
 
-<%= render '/shared/post_form' %>
+<% if @user != current_user %>
+  <%= render 'shared/friend_action', other_user_id: @user.id %>
+  <% end %>
 
 <ul>
   <% @user.attributes.each do |attr| %>

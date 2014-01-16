@@ -1,3 +1,8 @@
+<h1>Your Feed</h1>
+<h3>What's on your mind</h3>
+<%= render '/shared/post_form' %>
+<br><br>
+
 <% @feed_posts.each do |post| %>
   <h4><%= post.posting_user.name %>: <%= post.details %></h4>
   <% post.comments.each_with_index do |comment, index| %>
