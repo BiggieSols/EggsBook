@@ -1,8 +1,12 @@
-<form action="<%= posts_url %>" method="POST">
+<form action="<%= posts_url %>" enctype="multipart/form-data" method="POST">
 
   <label for="post_details">Post</label>
-  <input  type="text" 
-          name="post[details]" 
+  <input  type="text"
+          name="post[details]"
           id="post_details">
+
+
+  <input type="file" name="post[image]" id="post_image">
+  <br>
   <input type="submit" value="Create Post">
 </form>

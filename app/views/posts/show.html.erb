@@ -1,5 +1,8 @@
 <h1>Post show page</h1>
+<% if @post.image != '/images/original/missing.png' %>
+<img src="<%= @post.image.url(:big) %>">
 
+<% end %>
 <h4><%= @post.details %></h4>
 <% @post.comments.each_with_index do |comment, index| %>
   <% if index < @post.comments.length - 1 %>

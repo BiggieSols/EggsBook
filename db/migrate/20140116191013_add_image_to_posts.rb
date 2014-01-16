@@ -8,5 +8,4 @@ class AddImageToPosts < ActiveRecord::Migration
   def self.down
     drop_attached_file :posts, :image
   end
-
 end

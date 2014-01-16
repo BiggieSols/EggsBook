@@ -5,6 +5,10 @@
 
 <% @feed_posts.each do |post| %>
   <h4><%= post.posting_user.name %>: <%= post.details %></h4>
+  <% if post.image.url != '/images/original/missing.png' %>
+    <img src="<%= post.image.url(:big) %>">
+  <% end %>
+
   <% post.comments.each_with_index do |comment, index| %>
     <% if index < post.comments.length - 1 %>
       <div>
