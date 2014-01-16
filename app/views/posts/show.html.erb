@@ -1,0 +1,6 @@
+<h1>Post show page</h1>
+
+<h4><%= @post.details %></h4>
+<% @post.comments.each do |comment| %>
+  <div><%= comment.details %></div>
+<% end %>

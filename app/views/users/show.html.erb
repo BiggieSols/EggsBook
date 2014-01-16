@@ -1,5 +1,7 @@
 <h1><%= @user.email %></h1>
 
+<%= render '/shared/post_form' %>
+
 <ul>
   <% @user.attributes.each do |attr| %>
     <li>
@@ -8,6 +10,14 @@
   <% end %>
 </ul>
 
+<h4>Favorite Breakfast Foods</h4>
 <% @user.favorite_foods.each do |food| %>
   <div><%= food.name %></div>
+<% end %>
+
+<% if !@user.posts.empty? %>
+  <h4>Posts</h4>
+  <% @user.posts.each do |post| %>
+    <div><%= post.details %></div>
+  <% end %>
 <% end %>

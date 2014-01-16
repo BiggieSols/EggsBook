@@ -16,7 +16,12 @@
   <% else %>
     <span><%= link_to "Sign In", new_session_url %></span>
     <span><%= link_to "Create Account", new_user_url %></span>
+  <% end %>
 
+  <% if flash[:errors] %>
+    <div><%= flash[:errors].split(", ")%></div>
+  <% elsif flash[:success] %>
+    <div><%= flash[:success]%></div>
   <% end %>
 
   <%= yield %>
