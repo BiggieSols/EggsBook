@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115230838) do
+ActiveRecord::Schema.define(:version => 20140115232518) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "post_id"
+    t.text     "details"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "foods", :force => true do |t|
     t.string   "name",       :null => false
@@ -40,6 +51,15 @@ ActiveRecord::Schema.define(:version => 20140115230838) do
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
+
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "details"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "user_foods", :force => true do |t|
     t.integer  "user_id",    :null => false

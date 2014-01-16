@@ -1,4 +1,16 @@
 <% button_text = action == :new_user ? "Create Account" : "Sign In" %>
+<% case action %>
+  <% when :new_user %>
+    <% button_text = "Create Account" %>
+    <% url = users_url %>
+  <% when :new_session %>
+    <% button_text = "Sign In" %>
+    <% url = session_url %>
+  <% when :edit_user %>
+    <% button_text = "Update" %>
+    <% url = users_url(user) %>
+<% end %>
+
 <% url = action == :new_user ? users_url : session_url %>
 
 <form action="<%= url %>" method="POST">
@@ -15,6 +27,23 @@
           value="<%= user.password %>" 
           id="user_password">
   <br>
+
+
+  <% if action != :new_session %>
+    <h4>Favorite Foods</h4>
+    <% Food.all.each do |food| %>
+      <input  type="checkbox" 
+              name="favorite_foods[]" 
+              value="<%= food.id %>" 
+              id="food_<%= food.id %>" 
+              <%= "checked" if user.favorite_foods.include?(food) %>>
+      <label for="food_<%= food.id %>">
+        <%= food.name %>
+      </label>
+      <br>
+    <% end %>
+
+  <% end %>
 
   <input type="submit" value="<%= button_text %>">
 </form>

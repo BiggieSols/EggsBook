@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
-  belongs_to :user
   attr_accessible :details
+
+  belongs_to :user
+  has_many :comments
+  
+  validates :details, presence: true
 end

@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   validates :email, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 4 }, on: :create
 
+  has_many :posts
+  has_many :comments #comments that I made, not comments made on my posts
+
   has_many :user_foods
   has_many :favorite_foods, through: :user_foods, source: :food
 
