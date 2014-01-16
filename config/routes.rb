@@ -4,12 +4,14 @@ EggsBook::Application.routes.draw do
     resources :posts, only: [:index]
   end
 
-  
+  get 'users/:user_id/feed', to: 'feeds#show'
+
+
   resources :posts, only: [:show, :create] do
     resources :comments, only: [:create, :index]
   end
 
-  resource :session, only: [:new, :create, :destroy] 
+  resource :session, only: [:new, :create, :destroy]
 
   resources :friend_requests, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
@@ -18,6 +20,6 @@ EggsBook::Application.routes.draw do
   # resources :foods, only: [:create, :destroy]
   # resources :user_foods, only: [:create, :destroy]
 
-  get 'about', to: 'static_pages:about'
-  get 'contact', to: 'static_pages:contact'
+  get 'about', to: 'static_pages#about'
+  get 'contact', to: 'static_pages#contact'
 end
