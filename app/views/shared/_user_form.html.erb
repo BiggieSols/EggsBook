@@ -8,12 +8,14 @@
     <% url = session_url %>
   <% when :edit_user %>
     <% button_text = "Update" %>
-    <% url = users_url(user) %>
+    <% url = user_url(user) %>
 <% end %>
 
-<% url = action == :new_user ? users_url : session_url %>
-
 <form action="<%= url %>" method="POST">
+  <% if action == :edit_user %>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
   <label for="user_email">Email</label>
   <input  type="text" 
           name="user[email]" 
@@ -32,8 +34,9 @@
   <% if action != :new_session %>
     <h4>Favorite Foods</h4>
     <% Food.all.each do |food| %>
+
       <input  type="checkbox" 
-              name="favorite_foods[]" 
+              name="user[favorite_food_ids][]" 
               value="<%= food.id %>" 
               id="food_<%= food.id %>" 
               <%= "checked" if user.favorite_foods.include?(food) %>>

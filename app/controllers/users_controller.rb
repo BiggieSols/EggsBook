@@ -20,12 +20,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
-    food_ids = params[:favorite_foods]
-    food_ids.each do |food|
-      @user.user_foods.build(food_id: food)
-    end
-
     if @user.save
       log_in! @user
       redirect_to user_url(@user)
@@ -37,7 +31,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to user_url(@user)

@@ -7,3 +7,7 @@
     </li>
   <% end %>
 </ul>
+
+<% @user.favorite_foods.each do |food| %>
+  <div><%= food.name %></div>
+<% end %>
