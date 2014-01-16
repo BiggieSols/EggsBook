@@ -11,37 +11,41 @@
     <% url = user_url(user) %>
 <% end %>
 
-<form action="<%= url %>" method="POST">
+<form action="<%= url %>" enctype="multipart/form-data" method="POST">
   <% if action == :edit_user %>
     <input type="hidden" name="_method" value="PUT">
   <% end %>
 
   <label for="user_email">Email</label>
-  <input  type="text" 
-          name="user[email]" 
-          value="<%= user.email %>" 
+  <input  type="text"
+          name="user[email]"
+          value="<%= user.email %>"
           id="user_email">
   <br>
 
   <% if action != :new_session %>
+  <label for="user_profile_picture">Profile Pic</label>
+  <input type="file" name="user[profile_picture]" id="user_profile_picture">
+  <br>
+
     <label for="user_name">Name</label>
-    <input  type="text" 
-            name="user[name]" 
-            value="<%= user.name %>" 
+    <input  type="text"
+            name="user[name]"
+            value="<%= user.name %>"
             id="user_name">
     <br>
 
     <label for="user_about_me">About Me</label>
-    <textarea name="user[about_me]" 
+    <textarea name="user[about_me]"
               id="user_about_me"><%= user.about_me %></textarea>
-    
+
     <br>
   <% end %>
 
   <label for="user_password">Password</label>
-  <input  type="password" 
-          name="user[password]" 
-          value="<%= user.password %>" 
+  <input  type="password"
+          name="user[password]"
+          value="<%= user.password %>"
           id="user_password">
   <br>
 
@@ -50,10 +54,10 @@
     <h4>Favorite Foods</h4>
     <% Food.all.each do |food| %>
 
-      <input  type="checkbox" 
-              name="user[favorite_food_ids][]" 
-              value="<%= food.id %>" 
-              id="food_<%= food.id %>" 
+      <input  type="checkbox"
+              name="user[favorite_food_ids][]"
+              value="<%= food.id %>"
+              id="food_<%= food.id %>"
               <%= "checked" if user.favorite_foods.include?(food) %>>
       <label for="food_<%= food.id %>">
         <%= food.name %>

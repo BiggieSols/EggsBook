@@ -4,23 +4,40 @@
 <br><br>
 
 <% @feed_posts.each do |post| %>
-  <h4><%= post.posting_user.name %>: <%= post.details %></h4>
+  <div>
+    <img src="<%= post.posting_user.profile_picture.url(:small)%>" style="display:inline-block">
+
+    <strong><%= post.posting_user.name %></strong>
+    <%= post.details %>
+  </div>
+
+
   <% if post.image.url != '/images/original/missing.png' %>
-    <img src="<%= post.image.url(:big) %>">
+    <div>
+      <img src="<%= post.image.url(:big) %>">
+    </div>
   <% end %>
 
-  <% post.comments.each_with_index do |comment, index| %>
-    <% if index < post.comments.length - 1 %>
-      <div>
-        <strong><%= comment.user.name %>:</strong>
-        <%= comment.details %>
-      </div>
+
+
+  <div>
+    <% post.comments.each_with_index do |comment, index| %>
+      <% if index < post.comments.length%>
+        <div>
+          <% if comment.user.profile_picture.url != '/images/original/missing.png'%>
+            <img src="<%= comment.user.profile_picture.url(:icon) %>">
+          <% end %>
+
+          <strong><%= comment.user.name %>:</strong><br>
+          <%= comment.details %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <form action="<%= post_comments_url(post) %>" method="POST">
-    <input type="text" name="comment[details]" id="comment_details">
-    <input type="submit" value="Comment">
-  </form>
-  <br><br>
+    <form action="<%= post_comments_url(post) %>" method="POST">
+      <input type="text" name="comment[details]" id="comment_details">
+      <input type="submit" value="Comment">
+    </form>
+    <br><br>
+  </div>
 <% end %>

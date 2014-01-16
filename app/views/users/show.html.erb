@@ -1,5 +1,9 @@
 <h1><%= @user.name %></h1>
 
+<% if @user.profile_picture.url != '/profile_pictures/original/missing.png' %>
+  <img src="<%= @user.profile_picture.url(:medium) %>">
+<% end %>
+
 <% if @user != current_user %>
   <%= render 'shared/friend_action', other_user_id: @user.id %>
   <% end %>

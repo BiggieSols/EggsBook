@@ -6,12 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name: "sol", email: "sol@gmail.com", password: "asdf", about_me: "here is some info about sol")
-User.create(name: "brian", email: "brian@gmail.com", password: "asdf", about_me: "here is some info about brian")
-User.create(name: "danilo", email: "danilo@gmail.com", password: "asdf", about_me: "here is some info about danilo")
-User.create(name: "steve", email: "steve@gmail.com", password: "asdf", about_me: "here is some info about steve")
-User.create(name: "jenny", email: "jenny@gmail.com", password: "asdf", about_me: "here is some info about jenny")
-User.create(name: "brittani", email: "brittani@gmail.com", password: "asdf", about_me: "here is some info about brittani")
+User.create(name: "sol", email: "sol@gmail.com", password: "asdf", about_me: "here is some info about sol", profile_picture: File.open('app/assets/images/seed_photos/sol.jpg'))
+User.create(name: "brian", email: "brian@gmail.com", password: "asdf", about_me: "here is some info about brian", profile_picture: File.open('app/assets/images/seed_photos/brian.jpg'))
+User.create(name: "danilo", email: "danilo@gmail.com", password: "asdf", about_me: "here is some info about danilo", profile_picture: File.open('app/assets/images/seed_photos/danilo.jpg'))
+User.create(name: "steve", email: "steve@gmail.com", password: "asdf", about_me: "here is some info about steve", profile_picture: File.open('app/assets/images/seed_photos/steve.jpg'))
+User.create(name: "jenny", email: "jenny@gmail.com", password: "asdf", about_me: "here is some info about jenny", profile_picture: File.open('app/assets/images/seed_photos/jenny.jpg'))
+User.create(name: "brittani", email: "brittani@gmail.com", password: "asdf", about_me: "here is some info about brittani", profile_picture: File.open('app/assets/images/seed_photos/brittani.jpg'))
 
 Food.create(name: "breakfast burrito")
 Food.create(name: "scrambled eggs")

@@ -4,7 +4,7 @@ EggsBook::Application.routes.draw do
     resources :posts, only: [:index]
   end
 
-  get 'users/:user_id/feed', to: 'feeds#show'
+  get 'users/:user_id/feed', to: 'feeds#show', as: "user_feed"
 
 
   resources :posts, only: [:show, :create] do

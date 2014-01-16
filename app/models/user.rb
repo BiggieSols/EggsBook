@@ -1,5 +1,14 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :favorite_food_ids, :name, :about_me
+  attr_accessible :email, :password, :favorite_food_ids, :name, :about_me, :profile_picture
+
+  has_attached_file :profile_picture, styles: {
+    large: "600x600",
+    medium: "300x300",
+    small: "70x70",
+    icon: "40x40"
+  }
+
+
   attr_accessor :password
 
   before_validation :set_session_token, :set_password_digest, on: :create
@@ -16,20 +25,20 @@ class User < ActiveRecord::Base
   has_many :friendships, foreign_key: :user_id
   has_many :friends, through: :friendships, source: :friended_user
 
-  has_many :made_friend_requests, 
-              foreign_key: :user_id, 
+  has_many :made_friend_requests,
+              foreign_key: :user_id,
               class_name: "FriendRequest"
 
-  has_many :received_friend_requests, 
-              foreign_key: :friend_id, 
+  has_many :received_friend_requests,
+              foreign_key: :friend_id,
               class_name: "FriendRequest"
 
-  has_many :friends_requested, 
-              through: :made_friend_requests, 
+  has_many :friends_requested,
+              through: :made_friend_requests,
               source: :requested_user
 
-  has_many :users_requesting_friendship, 
-              through: :received_friend_requests, 
+  has_many :users_requesting_friendship,
+              through: :received_friend_requests,
               source: :requesting_user
 
   def self.find_by_credentials(params={email: nil, password: nil})
@@ -56,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def friendship_status_with(other_user_id)
-    case     
+    case
     when self.is_friends_with(other_user_id)
       return :friend
     when self.has_friend_request_from(other_user_id)

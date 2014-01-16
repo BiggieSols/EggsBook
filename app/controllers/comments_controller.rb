@@ -4,11 +4,11 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(params[:comment])
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to post_url(@post)
+      redirect_to user_feed_url(current_user)
     else
       errors = @comment.errors.full_messages
       flash[:error] = errors
-      redirect_to post_url(@post)
+      redirect_to user_feed_url(current_user)
     end
   end
 
