@@ -34,4 +34,15 @@ EggsBook::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: 'eggsbook',
+      access_key_id: 'AKIAJGWXF2EXG4FT4U5A',
+      secret_access_key: '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',
+      s3_host_name: 's3-us-west-1.amazonaws.com'
+    }
+  }
+
 end
