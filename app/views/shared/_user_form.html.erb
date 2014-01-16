@@ -23,18 +23,20 @@
           id="user_email">
   <br>
 
-  <label for="user_name">Name</label>
-  <input  type="text" 
-          name="user[name]" 
-          value="<%= user.name %>" 
-          id="user_name">
-  <br>
+  <% if action != :new_session %>
+    <label for="user_name">Name</label>
+    <input  type="text" 
+            name="user[name]" 
+            value="<%= user.name %>" 
+            id="user_name">
+    <br>
 
-  <label for="user_about_me">About Me</label>
-  <textarea name="user[about_me]" 
-            id="user_about_me"><%= user.about_me %></textarea>
-  
-  <br>
+    <label for="user_about_me">About Me</label>
+    <textarea name="user[about_me]" 
+              id="user_about_me"><%= user.about_me %></textarea>
+    
+    <br>
+  <% end %>
 
   <label for="user_password">Password</label>
   <input  type="password" 

@@ -52,7 +52,7 @@ Friendship.create(user_id: 6, friend_id: 5)
 
 User.all.each do |user|
   (rand(5)+1).times do |num|
-    user.posts.create(details: "post number #{num} by #{user.name}")
+    user.posts.create(details: Faker::Lorem.sentences(rand(5) + 1))
   end
 end
 
@@ -64,8 +64,6 @@ Post.all.each do |post|
     p.save!
   end
 end
-
-
 
 
 
