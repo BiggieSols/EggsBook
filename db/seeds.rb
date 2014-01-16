@@ -30,7 +30,6 @@ User.all.each do |user|
   user.favorite_food_ids = (1..12).to_a.sample((1..5).to_a.sample)
 end
 
-
 FriendRequest.create(user_id: 1, friend_id: 2)
 FriendRequest.create(user_id: 1, friend_id: 3)
 FriendRequest.create(user_id: 1, friend_id: 4)

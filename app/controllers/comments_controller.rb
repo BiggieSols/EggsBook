@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(params[:comment])
     @comment.user_id = current_user.id
     if @comment.save
@@ -13,5 +13,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+
   end
 end
