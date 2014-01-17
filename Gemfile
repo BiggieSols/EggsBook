@@ -7,9 +7,6 @@ gem 'rails', '3.2.15'
 
 gem 'pg'
 
-gem 'faker'
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -41,5 +38,8 @@ gem 'jbuilder'
 # To use debugger
 gem 'debugger'
 
+# user-added gems
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'figaro'
+gem 'faker'

@@ -39,8 +39,8 @@ EggsBook::Application.configure do
     storage: :s3,
     s3_credentials: {
       bucket: 'eggsbook',
-      access_key_id: 'AKIAJGWXF2EXG4FT4U5A',
-      secret_access_key: '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',
+      access_key_id: ENV["ACCESS_KEY_ID"],
+      secret_access_key: ENV["SECRET_ACCESS_KEY"],
       s3_host_name: 's3-us-west-1.amazonaws.com'
     }
   }
