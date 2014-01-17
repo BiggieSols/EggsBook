@@ -13,8 +13,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id], 
-                  include: [:posting_user, 
-                            :liking_users, 
-                            :comments => [:user, :liking_users] ])
+                      include: [:posting_user, 
+                                :liking_users, 
+                                :comments => [:user, :liking_users] 
+                      ])
   end
 end

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.includes(:favorite_foods).new
   end
 
   def show
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.includes(:favorite_foods).find(params[:id])
   end
 
   def create
