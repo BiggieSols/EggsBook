@@ -30,6 +30,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def photos
+    @photos = User.find(params[:id])
+                  .posts
+                  .where("image_file_name != ?", "nil")
+
+    render json: @photos
+  end
+
+  def friends
+    @user = User.find(params[:id])
+    @friends = @user.friends
+
+    if @user != current_user
+      @mutual_friends = current_user.friends & @user.friends
+    else
+      @mutual_friends = []
+    end
+
+    render json: @friends
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
