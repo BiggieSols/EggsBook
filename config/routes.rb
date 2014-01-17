@@ -25,7 +25,7 @@ EggsBook::Application.routes.draw do
   resources :friendships, only: [:create, :destroy]
 
   # may not need this
-  # resources :foods, only: [:create, :destroy]
+  resources :foods
   # resources :user_foods, only: [:create, :destroy]
 
   get 'about', to: 'static_pages#about'

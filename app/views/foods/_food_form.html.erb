@@ -1,10 +1,17 @@
+<% url = action == :new ? foods_url : food_url(food) %>
+
 <% if food.image.url != '/images/original/missing.png' %>
   <img src="<%= food.image.url(:medium) %>">
 <% end %>
 
-<form action="<%= foods_url %>" 
+<form action="<%= url %>" 
       enctype="multipart/form-data" 
       method="POST">
+
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
 
   <label for="food_name">Name</label>
   <input type="text" name="food[name]" id="food_name" value="<%= food.name %>">
