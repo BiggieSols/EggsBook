@@ -3,6 +3,8 @@
     <img src="<%= post.posting_user.profile_picture.url(:small) %>" style="float:left">
     <strong><%= post.posting_user.name %>:</strong>
     <br>
+    <%= post.updated_at.getlocal %>
+    <br>
   </a>
 
   <% if post.image.url != '/images/original/missing.png' %>
@@ -33,9 +35,7 @@
   <br>
 
   <% post.comments.each_with_index do |comment, index| %>
-    <% if index < post.comments.length %>
-      <%= render '/shared/comment', comment: comment %>
-    <% end %>
+    <%= render '/shared/comment', comment: comment %>
   <% end %>
 
   <form action="<%= post_comments_url(post) %>" method="POST">

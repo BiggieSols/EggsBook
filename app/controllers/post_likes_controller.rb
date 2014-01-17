@@ -2,6 +2,8 @@ class PostLikesController < ApplicationController
   def create
     post_id_to_add = [params[:post_id].to_i]
     current_user.liked_post_ids += post_id_to_add
+    Post.find(params[:post_id]).touch
+
     redirect_to feed_url
   end
 

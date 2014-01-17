@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user])
     if @user
       log_in! @user
-      redirect_to user_url(@user)
+      redirect_to feed_url
     else
       flash[:errors] = ["invalid username or password"]
       # this part below is only for rails, can remove w/ backbone
