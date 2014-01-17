@@ -7,6 +7,9 @@ class Post < ActiveRecord::Base
     small: "40x40"
   }
 
+  has_many :likes, as: :likable_object
+  has_many :liking_users, through: :likes, source: :user
+
   has_many :comments
   has_many :commenting_users, through: :comments, source: :user
 

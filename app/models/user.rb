@@ -19,6 +19,11 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments #comments that I made, not comments made on my posts
 
+  # Polymorophic inheritance. Rails does not support polymorphic has_many_through with the generic "likable_object" e.g. user has_many liked_objects
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :likable_object, source_type: 'Post'
+  has_many :liked_comments, through: :likes, source: :likable_object, source_type: 'Comment'
+
   has_many :user_foods
   has_many :favorite_foods, through: :user_foods, source: :food
 

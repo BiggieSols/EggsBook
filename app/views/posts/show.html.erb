@@ -1,9 +1,32 @@
 <h1>Post show page</h1>
-<% if @post.image != '/images/original/missing.png' %>
-<img src="<%= @post.image.url(:big) %>">
-
+<% if @post.image.url != '/images/original/missing.png' %>
+  <img src="<%= @post.image.url(:large) %>">
 <% end %>
+
 <h4><%= @post.details %></h4>
+
+<% if @post.liking_users.include? current_user %>
+  <form action="<%= post_like_url(@post) %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Un-Like">
+  </form>
+<% else %>
+  <form action="<%= post_like_url(@post) %>" method="POST">
+    <input type="submit" value="Like">
+  </form>
+<% end %>
+
+<% if @post.liking_users.length > 0 %>
+<div>Liked by:
+  <% @post.liking_users.each do |user| %>
+    <a href="<%= user_url(user) %>"><%= user.name %></a>
+  <% end %>
+</div>
+<% end %>
+
+<br>
+
+
 <% @post.comments.each_with_index do |comment, index| %>
   <% if index < @post.comments.length - 1 %>
     <div>

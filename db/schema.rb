@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116192627) do
+ActiveRecord::Schema.define(:version => 20140116225939) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(:version => 20140116192627) do
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id",             :null => false
+    t.integer  "likable_object_id",   :null => false
+    t.string   "likable_object_type", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "likes", ["likable_object_id"], :name => "index_likes_on_likable_object_id"
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"

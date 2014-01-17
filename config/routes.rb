@@ -2,10 +2,15 @@ EggsBook::Application.routes.draw do
   resources :users do
     # resources :feeds, only: [:show]
     resources :posts, only: [:index]
+
   end
 
   get 'users/:user_id/feed', to: 'feeds#show', as: "user_feed"
 
+  post 'posts/:post_id/like', to: 'post_likes#create', as: "post_like"
+  delete 'posts/:post_id/like', to: 'post_likes#destroy', as: "post_like"
+  post 'comments/:comment_id/like', to: 'comment_likes#create', as: "comment_like"
+  delete 'comments/:comment_id/like', to: 'comment_likes#destroy', as: "comment_like"
 
   resources :posts, only: [:show, :create] do
     resources :comments, only: [:create, :index]
