@@ -1,0 +1,29 @@
+<div>
+  <a href="<%= user_url(comment.user) %>">
+    <img src="<%= comment.user.profile_picture.url(:icon) %>" style="float:left">
+    <strong><%= comment.user.name %>:</strong>
+    <br>
+
+  </a>
+  <%= comment.details %>
+</div>
+
+<% if comment.liking_users.include? current_user %>
+  <form action="<%= comment_like_url(comment) %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Un-Like">
+  </form>
+<% else %>
+  <form action="<%= comment_like_url(comment) %>" method="POST">
+    <input type="submit" value="Like">
+  </form>
+<% end %>
+
+<% if comment.liking_users.length > 0 %>
+<div>Liked by:
+  <% comment.liking_users.each do |user| %>
+    <a href="<%= user_url(user) %>"><%= user.name %></a>
+  <% end %>
+</div>
+<% end %>
+<br>
