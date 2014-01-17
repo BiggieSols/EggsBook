@@ -5,7 +5,7 @@ EggsBook::Application.routes.draw do
 
   end
 
-  get 'users/:user_id/feed', to: 'feeds#show', as: "user_feed"
+  get '/feed', to: 'feeds#show', as: "feed"
 
   post 'posts/:post_id/like', to: 'post_likes#create', as: "post_like"
   delete 'posts/:post_id/like', to: 'post_likes#destroy', as: "post_like"
