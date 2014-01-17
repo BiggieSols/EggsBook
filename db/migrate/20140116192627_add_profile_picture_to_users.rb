@@ -9,5 +9,3 @@ class AddProfilePictureToUsers < ActiveRecord::Migration
     drop_attached_file :users, :profile_picture
   end
 end
-
-
