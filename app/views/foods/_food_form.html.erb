@@ -1,0 +1,15 @@
+<% if food.image.url != '/images/original/missing.png' %>
+  <img src="<%= food.image.url(:medium) %>">
+<% end %>
+
+<form action="<%= foods_url %>" 
+      enctype="multipart/form-data" 
+      method="POST">
+
+  <label for="food_name">Name</label>
+  <input type="text" name="food[name]" id="food_name" value="<%= food.name %>">
+
+  <input type="file" name="food[image]" id="food_image">
+  <br>
+  <input type="submit" value="Create">
+</form>
