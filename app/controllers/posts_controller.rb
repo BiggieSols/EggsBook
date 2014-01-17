@@ -12,14 +12,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:comments)
-                .includes(:commenting_users)
-                .includes(:liking_users)
-                .find(params[:id])
-
-    @post = Post.find(params[:id], include: [:comments, :commenting_users, :liking_users])
-    # User.find(params[:user_id], include: {:friends => {:posts => :comments}})
-
-    @comment = @post.comments.build
+    @post = Post.find(params[:id], 
+                  include: [:posting_user, 
+                            :liking_users, 
+                            :comments => [:user, :liking_users] ])
   end
 end
