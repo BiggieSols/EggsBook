@@ -4,8 +4,6 @@
 <br><br>
 
 <% @feed_posts.each do |post| %>
-  <div style="border: 1px solid orange">
-    <%= render '/shared/post', post: post %>
-  </div>
+  <%= render '/shared/post', post: post %>
   <br><br>
 <% end %>

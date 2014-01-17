@@ -1,3 +1,4 @@
+<div style="border: 3px solid orange; padding: 10px">
 <% if post.image.url != '/images/original/missing.png' %>
   <img src="<%= post.image.url(:large) %>">
 <% end %>
@@ -35,3 +36,4 @@
   <input type="text" name="comment[details]" id="comment_details">
   <input type="submit" value="Comment">
 </form>
+</div>

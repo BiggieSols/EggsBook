@@ -24,6 +24,6 @@
 <% if !@user.posts.empty? %>
   <h4>Posts</h4>
   <% @user.posts.each do |post| %>
-    <div><%= post.details %></div>
+  <%= render '/shared/post', post: post %>
   <% end %>
 <% end %>
