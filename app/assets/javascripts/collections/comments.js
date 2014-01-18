@@ -9,8 +9,6 @@ EggsBook.Collections.Comments = Backbone.Collection.extend({
       comment_model.set(parsedComment);
       obj_response.push(comment);
     });
-
-    console.log("got to comments parse");
     return obj_response;
   }
   // initialize: function(options) {

@@ -24,6 +24,7 @@
 <% _.each(post.get('comments').models, function(comment) { %>
   <div>
     <% var user = comment.get('user') %>
+    <img src="<%= user.get('photo_urls').icon %>">
   </div>
 <% }); %>
 </div>
