@@ -1,9 +1,7 @@
-json.(@user, :id, :name, :email, :about_me, :photo_url)
+json.(@user, :id, :name, :email, :about_me, :photo_urls)
 
-json.posts do
-  json.array!(@user.posts) do |post|
-    json.id(post.id)
-  end
+json.posts(@user.posts) do |post|
+  json.partial!('posts/single_post', post: post)
 end
 
 json.favorite_foods do

@@ -1,3 +1,21 @@
+<!-- user photo -->
+<img src="<%= post.get('user').get('photo_urls').small %>">
+
+<!-- user name -->
+
+
+<!-- liking_users -->
+
+<!-- like/unlike button -->
+
+<!-- comments (include photo, name, comment, like) -->
+
+<!-- add comment field -->
+
 <% _.keys(post.attributes).forEach(function(attr) { %>
   <%= attr %>: <%= post.get(attr) %><br>
 <% }) %>
+
+<% _.each(post.get('comments').models, function(comment) { %>
+  <%=  comment.get('details') %><br>
+<% }); %>

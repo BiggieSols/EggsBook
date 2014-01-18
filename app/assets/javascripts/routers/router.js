@@ -6,10 +6,10 @@ EggsBook.Routers.Router = Backbone.Router.extend({
     EggsBook.posts = new EggsBook.Collections.Posts();
     EggsBook.comments = new EggsBook.Collections.Comments();
     EggsBook.foods = new EggsBook.Collections.Foods();
-    EggsBook.users.fetch();
-    EggsBook.posts.fetch();
-    EggsBook.comments.fetch();
-    EggsBook.foods.fetch();
+    // EggsBook.users.fetch();
+    // EggsBook.posts.fetch();
+    // EggsBook.comments.fetch();
+    // EggsBook.foods.fetch();
   },
 
   routes: {
@@ -19,21 +19,21 @@ EggsBook.Routers.Router = Backbone.Router.extend({
   },
 
   post: function(id) {
-    console.log("on show post route")
+    console.log("on show post route");
     var that = this;
 
     this._getPost(id, function(post) {
       var postView = new EggsBook.Views.PostView({model: post});
       that._swapView(postView);
-    })
+    });
   },
 
   user: function(id) {
     var that = this;
     this._getUser(id, function(user) {
       var userProfileView = new EggsBook.Views.UserProfileView({model: user});
-      that._swapView(userProfileView)
-    })
+      that._swapView(userProfileView);
+    });
   },
 
   _getPost: function(id, callback) {
@@ -43,7 +43,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
         success: function() {
           callback(EggsBook.posts.get(id));
         }
-      })
+      });
     } else {
       callback(post);
     }
@@ -52,13 +52,13 @@ EggsBook.Routers.Router = Backbone.Router.extend({
   _getUser: function(id, callback) {
     var user = EggsBook.users.get(id);
     if (!user) {
-      var user = EggsBook.users.create();
+      user = EggsBook.users.create();
       user.id = id;
       user.fetch({
         success: function() {
           callback(user);
         }
-      })
+      });
     } else {
       callback(user);
     }
@@ -66,7 +66,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
 
   _swapView: function(view) {
     if(this.currentView) {
-      this.currentView.remove;
+      this.currentView.remove();
     }
     this.currentView = view;
 

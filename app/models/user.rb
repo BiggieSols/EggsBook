@@ -106,11 +106,14 @@ class User < ActiveRecord::Base
     [friendship_1, friendship_2]
   end
 
-  def photo_url
-    if (self.profile_picture.url == "/profile_pictures/original/missing.png")
-      return "" 
+  def photo_urls
+    if self.profile_picture.url == "/profile_pictures/original/missing.png"
+      return {} 
     else
-      return(self.profile_picture.url)
+      sizes = [:icon, :small, :medium, :large]
+      photo_urls = {}
+      sizes.each {|size| photo_urls[size] = self.profile_picture.url(size)}
+      return photo_urls
     end
   end
 end
