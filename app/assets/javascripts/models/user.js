@@ -4,5 +4,10 @@ EggsBook.Models.User = Backbone.Model.extend({
     this.posts = options.posts
   },
 
-  urlRoot: '/users'
+  urlRoot: '/users',
+
+  parse: function(response, options) {
+    console.log(response);
+    return response;
+  }
 })

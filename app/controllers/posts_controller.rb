@@ -6,7 +6,6 @@ class PostsController < ApplicationController
                       :liking_users, 
                       :comments => [:user, :liking_users] 
                     ])
-
   end
 
   def create

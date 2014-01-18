@@ -8,6 +8,7 @@ EggsBook::Application.routes.draw do
   # temp?
   ###########################################
   resources :posts, only: [:index]
+  resources :comments, only: [:index]
   ###########################################
 
   get '/users/:id/photos', to: 'users#photos', as: "user_photos"

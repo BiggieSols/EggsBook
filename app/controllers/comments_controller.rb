@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+  def index
+    @comments = Comment.all(include: :liking_users)
+  end
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(params[:comment])
@@ -14,6 +18,5 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-
   end
 end

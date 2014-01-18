@@ -1,3 +1,8 @@
 EggsBook.Collections.Users = Backbone.Collection.extend({
-  url: '/users'
+  url: '/users', 
+
+  parse: function(response, options) {
+    
+    return response;
+  }
 })

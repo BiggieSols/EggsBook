@@ -4,7 +4,12 @@ EggsBook.Collections.Posts = Backbone.Collection.extend({
     // this.photo_only = options.photos_only
   }, 
 
-  url: '/posts'
+  url: '/posts',
+
+  parse: function(response, options) {
+    console.log(response);
+    return response;
+  }
 
   // url: function(){
   //   // convert this to a switch statement later
