@@ -9,11 +9,10 @@ json.user do
   json.partial!('users/user_lite', user: post.posting_user)
 end
 
-json.liking_users do
-  post.liking_users.each do |user|
-    json.partial!('users/user_lite', user: user)
-  end
-end
+json.partial!('users/liking_users', likable_object: post)
+  # post.liking_users.each do |user|
+  #   json.partial!('users/user_lite', user: user)
+  # end
 
 json.comments(post.comments) do |comment|
   json.partial!('comments/show', comment: comment)

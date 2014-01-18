@@ -3,18 +3,24 @@
 
 <!-- user name -->
 <%= post.get('user').get('name') %>
+<br>
+
+<!-- details -->
+<%= post.get('details') %>
 
 <!-- liking_users -->
+<br>
+<div>liked by: 
+<% _.each(post.get('liking_users').models, function(user) { %>
+  <a href="#/users/<%= user.get('id') %>"><%= user.get('name') %></a>
+<% }); %>
+</div>
 
 <!-- like/unlike button -->
 
 <!-- comments (include photo, name, comment, like) -->
 
 <!-- add comment field -->
-
-<% _.keys(post.attributes).forEach(function(attr) { %>
-  <%= attr %>: <%= post.get(attr) %><br>
-<% }) %>
 
 <% _.each(post.get('comments').models, function(comment) { %>
   <%=  comment.get('details') %><br>
