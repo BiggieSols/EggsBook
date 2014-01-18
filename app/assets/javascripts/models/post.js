@@ -8,8 +8,9 @@ EggsBook.Models.Post = Backbone.Model.extend({
     // method 2
     var comments = new EggsBook.Collections.Comments();
     var parsed_comments = comments.parse(response.comments);
-    response.comments = comments.set(parsed_comments);
-
+    comments.set(parsed_comments);
+    console.log(comments);
+    response.comments = comments;
 
     response.user = new EggsBook.Models.User(response.user);
     response.liking_users = new EggsBook.Collections.Users(response.liking_users);
