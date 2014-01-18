@@ -105,10 +105,12 @@ class User < ActiveRecord::Base
     friendship_2 = Friendship.new(user_id: other_user_id, friend_id: self.id)
     [friendship_1, friendship_2]
   end
+
+  def photo_url
+    if (self.profile_picture.url == "/profile_pictures/original/missing.png")
+      return "" 
+    else
+      return(self.profile_picture.url)
+    end
+  end
 end
-
-
-
-
-
-

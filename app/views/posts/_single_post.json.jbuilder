@@ -6,8 +6,6 @@ else
 end
 
 
-json.comments do
-  json.array(post.comments) do |comment|
-    json.partial!('comments/show', comment: comment)
-  end
+json.comments(post.comments) do |comment|
+  json.partial!('comments/show', comment: comment)
 end
