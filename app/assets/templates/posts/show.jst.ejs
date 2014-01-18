@@ -14,11 +14,19 @@
 <% _.each(post.get('liking_users').models, function(user) { %>
   <a href="#/users/<%= user.get('id') %>"><%= user.get('name') %></a>
 <% }); %>
-</div>
+</div>  
 
 <!-- like/unlike button -->
 
+
 <!-- comments (include photo, name, comment, like) -->
+<div>
+<% _.each(post.get('comments').models, function(comment) { %>
+  <div>
+    <% var user = comment.get('user') %>
+  </div>
+<% }); %>
+</div>
 
 <!-- add comment field -->
 
