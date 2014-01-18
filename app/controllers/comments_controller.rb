@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def show
-    render json: Comment.find(params[:id])
+    @comment = Comment.find(params[:id], include: :liking_users)
   end
   
   def index
