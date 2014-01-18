@@ -4,7 +4,8 @@ window.EggsBook = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    new EggsBook.Routers.Router({$rootEl: $('#content')});
+    Backbone.history.start();
   }
 };
 

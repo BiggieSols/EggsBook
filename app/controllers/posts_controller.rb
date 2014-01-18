@@ -1,4 +1,14 @@
 class PostsController < ApplicationController
+  def index
+    # @posts = Post.all
+    # render json: @posts
+    @posts = Post.all(include: [:posting_user, 
+                      :liking_users, 
+                      :comments => [:user, :liking_users] 
+                    ])
+
+  end
+
   def create
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
@@ -13,9 +23,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id], 
-                      include: [:posting_user, 
-                                :liking_users, 
-                                :comments => [:user, :liking_users] 
-                      ])
+                  include: [:posting_user, 
+                            :liking_users, 
+                            :comments => [:user, :liking_users] 
+                  ])
   end
 end

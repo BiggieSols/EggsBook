@@ -5,6 +5,11 @@ EggsBook::Application.routes.draw do
 
   end
 
+  # temp?
+  ###########################################
+  resources :posts, only: [:index]
+  ###########################################
+
   get '/users/:id/photos', to: 'users#photos', as: "user_photos"
   get '/users/:id/friends', to: 'users#friends', as: "user_friends"
 
