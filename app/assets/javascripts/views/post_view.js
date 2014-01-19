@@ -1,8 +1,8 @@
 EggsBook.Views.PostView = Backbone.View.extend({
   events: {
     'submit #new_comment':'add_comment',
-    'click .like':'like',
-    'click .unLike':'unLike'
+    'click .like':'toggleLike',
+    'click .unLike':'toggleLike'
   },
 
   initialize: function() {
@@ -39,10 +39,41 @@ EggsBook.Views.PostView = Backbone.View.extend({
     });
   },
 
-  // clean this up later. toggle both classes
-  like: function(event) {
+  toggleLike: function(event) {
+    var _setAttributes = function() {
+      var attributes = {};
+      attributes[attrName] = likedObjIds;
+      EggsBook.currentUser.set(attributes);
+    };
+
+    var _like = function() {
+      likedObjIds = likedObjIds.concat(dataId);
+
+      _setAttributes();
+
+      target.get('liking_users').add(EggsBook.currentUser);
+      likeObj.save();
+    };
+
+    var _unLike = function() {
+      // set dummy id so we can destroy the object. 
+      // destroy is based on the current_user and post_id server side, 
+      // not the id of the PostLike object
+      likeObj.id = -1;
+      likedObjIds = _.without(likedObjIds, dataId);
+
+      _setAttributes();
+
+      target.get('liking_users').remove(EggsBook.currentUser);
+      likeObj.destroy();
+    };
+
+
     var button = $(event.currentTarget);
     var dataType = button.attr("data-type");
+    var btnClass = button.attr("class");
+    var dataId = parseInt(button.attr("data-id"));
+
     if(dataType === "post") {
       var likeObj = new EggsBook.Models.PostLike({ "post_id": this.model.id });
       var target = this.model;
@@ -52,47 +83,15 @@ EggsBook.Views.PostView = Backbone.View.extend({
     }
 
     var attrName = 'liked_'+ dataType + '_ids';
-
     var likedObjIds = EggsBook.currentUser.get(attrName);
-    likedObjIds = likedObjIds.concat(parseInt(button.attr('data-id')));
 
-    var attributes = {};
-    attributes[attrName] = likedObjIds;
-    EggsBook.currentUser.set(attributes);
-
-    target.get('liking_users').add(EggsBook.currentUser);
-    likeObj.save();
-  },
-
-  unLike: function(event) {
-    button = $(event.currentTarget);
-    var dataType = button.attr("data-type");
-    if(dataType == "post") {
-      var likeObj =  new EggsBook.Models.PostLike({"post_id": this.model.id});
-      // set dummy id so we can destroy the object. 
-      // destroy is based on the current_user and post_id server side, 
-      // not the id of the PostLike object
-      likeObj.id = -1;
-      var target = this.model;
+    if(btnClass == "like"){
+      console.log("attempting to unlike");
+      _like();
     } else {
-      // add logic here for comments
+      console.log("attempting to like");
+      _unLike();
     }
-    var attrName = 'liked_'+ dataType + '_ids';
-
-    var likedObjIds = EggsBook.currentUser.get(attrName);
-
-    // different from above
-    likedObjIds = _.without(likedObjIds, parseInt(button.attr('data-id')));
-    // end difference
-
-    var attributes = {};
-    attributes[attrName] = likedObjIds;
-    EggsBook.currentUser.set(attributes);
-
-    target.get('liking_users').remove(EggsBook.currentUser);
-    // different from above
-    likeObj.destroy();
-    // end difference
   },
 });
 
