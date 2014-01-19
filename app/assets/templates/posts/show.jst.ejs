@@ -11,7 +11,8 @@
 <!-- liking_users -->
 <br>
 
-<% if(post.get('likedByCurrentUser')) { %>
+
+<% if(_.include(currentUser.get('liked_post_ids'), post.id)) { %>
   <button data-id="<%= post.id %>" data-type="post" class="unLike">Un-Like</button>
 <% } else { %>
   <button data-id="<%= post.id %>" data-type="post" class="like">Like</button>

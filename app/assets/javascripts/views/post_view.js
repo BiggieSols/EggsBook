@@ -6,7 +6,7 @@ EggsBook.Views.PostView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.listenTo(this.model.get('comments'), "all", this.render);
+    // this.listenTo(this.model.get('comments'), "all", this.render);
     this.listenTo(this.model.get('liking_users'), "add", this.render);
   },
 
@@ -15,7 +15,7 @@ EggsBook.Views.PostView = Backbone.View.extend({
   render: function() {
     console.log("rendering!");
     console.log("num liking users: " + this.model.get('liking_users').models.length);
-    var renderedContent = this.template({post: this.model});
+    var renderedContent = this.template({post: this.model, currentUser: EggsBook.currentUser});
     this.$el.html(renderedContent);
     return this;
   },
@@ -46,36 +46,45 @@ EggsBook.Views.PostView = Backbone.View.extend({
     this.changeButton(button, "like");
     // console.log(button.attr("data-type"))
     if(button.attr("data-type") === "post") {
-      obj_to_like = new EggsBook.Models.PostLike({ "post_id": this.model.id });
+      objToLike = new EggsBook.Models.PostLike({ "post_id": this.model.id });
     } else {
       // add logic here
-      // obj_to_like = EggsBook.Models.CommentLike({"comment_id"})
+      // objToLike = EggsBook.Models.CommentLike({"comment_id"})
     }
-    var that = this;
-    obj_to_like.save({}, {
-      success: function() {
-        that.model.set('likedByCurrentUser', true);
+    likedPostIds = EggsBook.currentUser.get('liked_post_ids');
+    likedPostIds = likedPostIds.concat(parseInt(button.attr('data-id')));
+    EggsBook.currentUser.set({'liked_post_ids': likedPostIds});
+    var post = this.model;
+    post.get('liking_users').add(EggsBook.currentUser);
+    objToLike.save();
+    // this.render();
 
-        // temp: replace 1 with an actual value. need to set a "Current User" for the app.
-        var currentUser = new EggsBook.Models.User({'id': 1});
 
-        currentUser.fetch({
-          success: function() {
-            that.model.get('liking_users').add(currentUser, {
-              success: function() {
-                console.log("successfully fetched current user");
-              }
-            });
-            console.log(that.model.get('liking_users'));
-          }
-        });
+    // var that = this;
+    // objToLike.save({}, {
+    //   success: function() {
+    //     that.model.set('likedByCurrentUser', true);
+
+    //     // temp: replace 1 with an actual value. need to set a "Current User" for the app.
+    //     var currentUser = new EggsBook.Models.User({'id': 1});
+
+    //     currentUser.fetch({
+    //       success: function() {
+    //         that.model.get('liking_users').add(currentUser, {
+    //           success: function() {
+    //             console.log("successfully fetched current user");
+    //           }
+    //         });
+    //         console.log(that.model.get('liking_users'));
+    //       }
+    //     });
         
-      },
+    //   },
 
-      error: function() {
-        console.log("there was an error");
-      }
-    });
+    //   error: function() {
+    //     console.log("there was an error");
+    //   }
+    // });
   },
 
   unLike: function(event) {
