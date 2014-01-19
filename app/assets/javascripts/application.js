@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.serializeJSON.min
 //= require underscore
 //= require backbone
 //= require eggs_book

@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       @comment.post.touch
-      redirect_to feed_url
+      render 'create'
+      # redirect_to feed_url
     else
       errors = @comment.errors.full_messages
       flash[:error] = errors

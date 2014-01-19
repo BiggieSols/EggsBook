@@ -38,5 +38,7 @@ EggsBook::Application.routes.draw do
   get 'contact', to: 'static_pages#contact'
 
 
-  root to: 'feeds#show'
+  # root to: 'feeds#show'
+  # temp change
+  root to: 'static_pages#about'
 end
