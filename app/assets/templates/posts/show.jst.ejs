@@ -5,36 +5,46 @@
 <%= post.get('user').get('name') %>
 <br>
 
+<!-- post like/unlike button -->
+<div style="display:inline-block">
+  <% if(_.include(currentUser.get('liked_post_ids'), post.id)) { %>
+    <button data-id="<%= post.id %>" data-type="post" data-action="unLike" class="unLike btn btn-default btn-xs">Un-Like</button>
+  <% } else { %>
+    <button data-id="<%= post.id %>" data-type="post" data-action="like" class="like btn btn-default btn-xs">Like</button>
+  <% } %>
+
+  <!-- liking_users -->
+  <% liking_users = post.get('liking_users').models %>
+  <% if(liking_users.length > 0) { %>
+    <div>post liked by: 
+      <% _.each(post.get('liking_users').models, function(user) { %>
+        <a href="#/users/<%= user.id %>"><%= user.get('name') %></a>
+      <% }); %>
+    </div>  
+  <% }; %>
+</div>
+<br>
+
 <!-- details -->
 <%= post.get('details') %>
 
-<!-- liking_users -->
 <br>
-
-
-<% if(_.include(currentUser.get('liked_post_ids'), post.id)) { %>
-  <button data-id="<%= post.id %>" data-type="post" class="unLike">Un-Like</button>
-<% } else { %>
-  <button data-id="<%= post.id %>" data-type="post" class="like">Like</button>
-<% } %>
-
-<% liking_users = post.get('liking_users').models %>
-<% if(liking_users.length > 0) { %>
-  <div>liked by: 
-    <% _.each(post.get('liking_users').models, function(user) { %>
-      <a href="#/users/<%= user.id %>"><%= user.get('name') %></a>
-    <% }); %>
-  </div>  
-<% }; %>
-
-<!-- like/unlike button -->
-
+<br>
 
 <!-- comments (include photo, name, comment, like) -->
 <div>
 <% _.each(post.get('comments').models, function(comment) { %>
   <div>
     <!-- repeated from above, switched "post" with "comment" -->
+
+    <!-- like/unlike button -->
+    <% if(_.include(currentUser.get('liked_comment_ids'), comment.id)) { %>
+      <button data-id="<%= comment.id %>" data-type="comment" data-action="unLike" class="unLike btn btn-default btn-xs">Un-Like</button>
+    <% } else { %>
+      <button data-id="<%= comment.id %>" data-type="comment" data-action="like" class="like btn btn-default btn-xs">Like</button>
+    <% } %>
+
+    <!-- liking_users -->
     <% liking_users = comment.get('liking_users').models %>
 
     <% if(liking_users.length > 0) { %>
