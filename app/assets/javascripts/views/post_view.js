@@ -7,15 +7,13 @@ EggsBook.Views.PostView = Backbone.View.extend({
 
   initialize: function() {
     // this.listenTo(this.model.get('comments'), "all", this.render);
-    this.listenTo(this.model.get('liking_users'), "add", this.render);
+    this.listenTo(this.model.get('liking_users'), "add remove", this.render);
   },
 
   template: JST['posts/show'],
 
   render: function() {
     console.log("rendering!");
-    // console.log("current user's liked post ids: " + EggsBook.currentUser.get('liked_post_ids'));
-    console.log("num liking users: " + this.model.get('liking_users').models.length);
     var renderedContent = this.template({post: this.model, currentUser: EggsBook.currentUser});
     this.$el.html(renderedContent);
     return this;
@@ -44,43 +42,58 @@ EggsBook.Views.PostView = Backbone.View.extend({
   // clean this up later. toggle both classes
   like: function(event) {
     var button = $(event.currentTarget);
-    // this.changeButton(button);
     var dataType = button.attr("data-type");
-    // console.log(button.attr("data-type"))
     if(dataType === "post") {
-      var objToLike = new EggsBook.Models.PostLike({ "post_id": this.model.id });
+      var likeObj = new EggsBook.Models.PostLike({ "post_id": this.model.id });
       var target = this.model;
     } else {
       // add logic here
-      // objToLike = EggsBook.Models.CommentLike({"comment_id"})
+      // likeObj = EggsBook.Models.CommentLike({"comment_id"})
     }
 
     var attrName = 'liked_'+ dataType + '_ids';
 
     var likedObjIds = EggsBook.currentUser.get(attrName);
     likedObjIds = likedObjIds.concat(parseInt(button.attr('data-id')));
-    console.log("liked obj ids are " + likedObjIds);
 
     var attributes = {};
     attributes[attrName] = likedObjIds;
     EggsBook.currentUser.set(attributes);
-    
+
     target.get('liking_users').add(EggsBook.currentUser);
-    objToLike.save();
+    likeObj.save();
   },
 
   unLike: function(event) {
     button = $(event.currentTarget);
-    this.changeButton(button);
-  },
+    var dataType = button.attr("data-type");
+    if(dataType == "post") {
+      var likeObj =  new EggsBook.Models.PostLike({"post_id": this.model.id});
+      // set dummy id so we can destroy the object. 
+      // destroy is based on the current_user and post_id server side, 
+      // not the id of the PostLike object
+      likeObj.id = -1;
+      var target = this.model;
+    } else {
+      // add logic here for comments
+    }
+    var attrName = 'liked_'+ dataType + '_ids';
 
-  changeButton: function(button) {
-    console.log("changing class");
-    var currentClass = button.attr('class');
-    var classToAdd = (currentClass == "like" ? "unLike" : "like");
-    var buttonText = currentClass == "like" ? "Un-Like" : "Like";
-    button.text(buttonText).removeClass(currentClass).addClass(classToAdd);
-  }
+    var likedObjIds = EggsBook.currentUser.get(attrName);
+
+    // different from above
+    likedObjIds = _.without(likedObjIds, parseInt(button.attr('data-id')));
+    // end difference
+
+    var attributes = {};
+    attributes[attrName] = likedObjIds;
+    EggsBook.currentUser.set(attributes);
+
+    target.get('liking_users').remove(EggsBook.currentUser);
+    // different from above
+    likeObj.destroy();
+    // end difference
+  },
 });
 
 
