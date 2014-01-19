@@ -6,6 +6,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
     EggsBook.posts = new EggsBook.Collections.Posts();
     EggsBook.comments = new EggsBook.Collections.Comments();
     EggsBook.foods = new EggsBook.Collections.Foods();
+    EggsBook.currentUser = new EggsBook.Models.User({'id': 'current'});
     // EggsBook.users.fetch();
     // EggsBook.posts.fetch();
     // EggsBook.comments.fetch();
@@ -19,6 +20,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
   },
 
   post: function(id) {
+    EggsBook.currentUser.fetch();
     console.log("on show post route");
     var that = this;
 
