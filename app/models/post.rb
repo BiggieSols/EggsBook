@@ -16,4 +16,8 @@ class Post < ActiveRecord::Base
   belongs_to :posting_user, foreign_key: :user_id, class_name: "User"
 
   validates :details, presence: true
+
+  def liked_by_user?(user)
+    return user.liked_posts.include?(self)
+  end
 end

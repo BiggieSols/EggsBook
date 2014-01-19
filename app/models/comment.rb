@@ -6,4 +6,8 @@ class Comment < ActiveRecord::Base
   has_many :liking_users, through: :likes, source: :user
 
   attr_accessible :details
+
+  def liked_by_user?(user)
+    return user.liked_comments.include?(self)
+  end
 end

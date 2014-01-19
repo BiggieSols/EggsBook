@@ -11,8 +11,13 @@
 <!-- liking_users -->
 <br>
 
-<% liking_users = post.get('liking_users').models %>
+<% if(post.get('likedByCurrentUser')) { %>
+  <button data-id="<%= post.id %>" data-type="post" class="unLike">Un-Like</button>
+<% } else { %>
+  <button data-id="<%= post.id %>" data-type="post" class="like">Like</button>
+<% } %>
 
+<% liking_users = post.get('liking_users').models %>
 <% if(liking_users.length > 0) { %>
   <div>liked by: 
     <% _.each(post.get('liking_users').models, function(user) { %>
@@ -33,7 +38,7 @@
 
     <% if(liking_users.length > 0) { %>
       <div>comment liked by: 
-        <% _.each(post.get('liking_users').models, function(user) { %>
+        <% _.each(comment.get('liking_users').models, function(user) { %>
           <a href="#/users/<%= user.id %>"><%= user.get('name') %></a>
         <% }); %>
       </div>  
@@ -41,7 +46,7 @@
     <!-- end repeated segment -->
 
     <% var user = comment.get('user') %>
-    <a href="#/posts/<%= user.id %>">
+    <a href="#/users/<%= user.id %>">
       <img src="<%= user.get('photo_urls').icon %>" style="float:left">
       <%= user.get('name') %>
     </a>

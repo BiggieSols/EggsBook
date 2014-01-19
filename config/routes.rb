@@ -17,9 +17,9 @@ EggsBook::Application.routes.draw do
   get '/feed', to: 'feeds#show', as: "feed"
 
   post 'posts/:post_id/like', to: 'post_likes#create', as: "post_like"
-  delete 'posts/:post_id/like', to: 'post_likes#destroy', as: "post_like"
+  delete 'posts/:post_id/like/:id', to: 'post_likes#destroy', as: "post_like"
   post 'comments/:comment_id/like', to: 'comment_likes#create', as: "comment_like"
-  delete 'comments/:comment_id/like', to: 'comment_likes#destroy', as: "comment_like"
+  delete 'comments/:comment_id/like/:id', to: 'comment_likes#destroy', as: "comment_like"
 
   resources :posts, only: [:show, :create] do
     resources :comments, only: [:create, :index]

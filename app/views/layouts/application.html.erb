@@ -7,28 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <% if logged_in? %>
+      <span>logged in as: <%= current_user.email %></span>
+      <span>
+        <%= button_to("Log Out", session_url(current_user), method: :delete)%>
+      </span>
+    <% else %>
+      <span><%= link_to "Sign In", new_session_url %></span>
+      <span><%= link_to "Create Account", new_user_url %></span>
+    <% end %>
 
-  <% if logged_in? %>
-    <span>logged in as: <%= current_user.email %></span>
-    <span>
-      <%= button_to("Log Out", session_url(current_user), method: :delete)%>
-    </span>
-  <% else %>
-    <span><%= link_to "Sign In", new_session_url %></span>
-    <span><%= link_to "Create Account", new_user_url %></span>
-  <% end %>
+    <% if flash[:errors] %>
+      <div><%= flash[:errors].split(", ")%></div>
+    <% elsif flash[:success] %>
+      <div><%= flash[:success]%></div>
+    <% end %>
 
-  <% if flash[:errors] %>
-    <div><%= flash[:errors].split(", ")%></div>
-  <% elsif flash[:success] %>
-    <div><%= flash[:success]%></div>
-  <% end %>
+    <div id="content">
 
-  <div id="content">
+    <%= yield %>
 
-  <%= yield %>
-
-  </div>
-
+    </div>
+  <div>
 </body>
 </html>

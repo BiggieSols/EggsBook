@@ -14,3 +14,5 @@ json.partial!('users/liking_users', likable_object: post)
 json.comments(post.comments) do |comment|
   json.partial!('comments/show', comment: comment)
 end
+
+json.likedByCurrentUser(post.liked_by_user?(current_user))
