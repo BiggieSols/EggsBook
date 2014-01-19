@@ -10,11 +10,16 @@
 
 <!-- liking_users -->
 <br>
-<div>liked by: 
-<% _.each(post.get('liking_users').models, function(user) { %>
-  <a href="#/users/<%= user.get('id') %>"><%= user.get('name') %></a>
-<% }); %>
-</div>  
+
+<% liking_users = post.get('liking_users').models %>
+
+<% if(liking_users.length > 0) { %>
+  <div>liked by: 
+    <% _.each(post.get('liking_users').models, function(user) { %>
+      <a href="#/users/<%= user.id %>"><%= user.get('name') %></a>
+    <% }); %>
+  </div>  
+<% }; %>
 
 <!-- like/unlike button -->
 
@@ -23,14 +28,44 @@
 <div>
 <% _.each(post.get('comments').models, function(comment) { %>
   <div>
+    <!-- repeated from above, switched "post" with "comment" -->
+    <% liking_users = comment.get('liking_users').models %>
+
+    <% if(liking_users.length > 0) { %>
+      <div>comment liked by: 
+        <% _.each(post.get('liking_users').models, function(user) { %>
+          <a href="#/users/<%= user.id %>"><%= user.get('name') %></a>
+        <% }); %>
+      </div>  
+    <% }; %>
+    <!-- end repeated segment -->
+
     <% var user = comment.get('user') %>
-    <img src="<%= user.get('photo_urls').icon %>">
+    <a href="#/posts/<%= user.id %>">
+      <img src="<%= user.get('photo_urls').icon %>" style="float:left">
+      <%= user.get('name') %>
+    </a>
+      <br>
+      <%= comment.get('details') %>
   </div>
+  <br>
 <% }); %>
 </div>
 
 <!-- add comment field -->
+<form>
+  <input  type="text" 
+          name="comment[details]" 
+          id="comment_details" 
+          placeholder="Write a comment...">
+          
+  <input type="submit" value="add comment">
+</form>
 
-<% _.each(post.get('comments').models, function(comment) { %>
-  <%=  comment.get('details') %><br>
-<% }); %>
+
+
+
+
+
+
+

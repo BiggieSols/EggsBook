@@ -4,7 +4,6 @@ EggsBook.Collections.Users = Backbone.Collection.extend({
   model: EggsBook.Models.User,
 
   parse: function(response, options) {
-    
     return response;
   }
-})
+});

@@ -56,10 +56,19 @@ User.all.each do |user|
 end
 
 Post.all.each do |post|
-  (rand(3)).times do |num|
+  (rand(5)).times do |num|
     p = post.comments.build
     p.user_id = rand(User.count) + 1
     p.details = Faker::Lorem.sentence(rand(5) + 3)
     p.save!
   end
 end
+
+num_posts = Post.count
+num_comments = Comment.count
+
+User.all.each do |user|
+  user.liked_post_ids = (1..num_posts).to_a.sample(rand(5)+1)
+  user.liked_comment_ids = (1..num_posts).to_a.sample(rand(9)+1)
+end
+
