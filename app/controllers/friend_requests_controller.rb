@@ -4,11 +4,13 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.new(params[:friend_request])
     if @friend_request.save
       flash.now[:success] = "friend added successfully!"
-      redirect_to users_url
+      # redirect_to users_url
+      render json: @friend_request
     else
       errors = @friend_request.errors.full_messages
       flash.now[:errors] = errors
-      redirect_to users_url
+      # redirect_to users_url
+      render json: true
     end
   end
 
@@ -16,6 +18,7 @@ class FriendRequestsController < ApplicationController
     request = FriendRequest.find_by_user_id_and_friend_id(current_user.id, params[:friend_id])
     request.destroy
     puts "\n\n\n friend request destroyed! \n\n\n"
-    redirect_to users_url
+    # redirect_to users_url
+    render json: request
   end
 end
