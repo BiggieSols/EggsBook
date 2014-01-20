@@ -1,3 +1,5 @@
+<img src="<%= user.photo_url.medium %>">
+
 <% _.keys(user.attributes).forEach(function(key) { %>
   <%= key %>: <%= user.get(key) %><br>
-<% }); %>
+<% }); %>   

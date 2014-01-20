@@ -7,6 +7,8 @@ EggsBook.Routers.Router = Backbone.Router.extend({
     EggsBook.comments = new EggsBook.Collections.Comments();
     EggsBook.foods = new EggsBook.Collections.Foods();
     EggsBook.currentUser = new EggsBook.Models.User({'id': 'current'});
+
+    EggsBook.foods.fetch();
     // EggsBook.users.fetch();
     // EggsBook.posts.fetch();
     // EggsBook.comments.fetch();

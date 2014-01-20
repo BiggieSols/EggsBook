@@ -8,4 +8,15 @@ class Food < ActiveRecord::Base
 
   has_many :user_foods
   has_many :users, through: :user_foods
+
+  def photo_urls
+    if self.image.url == "/images/original/missing.png"
+      return {} 
+    else
+      sizes = [:icon, :medium]
+      photo_urls = {}
+      sizes.each {|size| photo_urls[size] = self.image.url(size)}
+      return photo_urls
+    end
+  end
 end

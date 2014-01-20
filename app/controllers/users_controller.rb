@@ -10,11 +10,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    if(params[:id]) == "current"
-      @user = current_user
-    else
-      @user = User.find(params[:id])
-    end
+    id = params[:id] == "current" ? current_user.id : params[:id]
+
+    @user = User.find(id, include: [
+                            :favorite_foods, 
+                            :posts => [
+                              :posting_user, 
+                              :liking_users, 
+                              :comments => [
+                                :user, :liking_users
+                              ]
+                            ]
+                          ])
   end
 
   def edit
