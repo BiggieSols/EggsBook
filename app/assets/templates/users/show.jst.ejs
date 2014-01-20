@@ -1,5 +1,31 @@
-<img src="<%= user.photo_url.medium %>">
+<img src="<%= user.get('photo_urls').medium %>">
 
 <% _.keys(user.attributes).forEach(function(key) { %>
   <%= key %>: <%= user.get(key) %><br>
-<% }); %>   
+<% }); %>
+
+
+<% user.get('favorite_food_ids').forEach(function(food_id) { %>
+  <% var food = foods.get(food_id) %>
+  <% if(food) { %>
+    <img src="<%= food.get('photo_urls').medium %>">
+  <% } %>
+<% }); %>
+
+<ul>
+  <!-- note: have this as a nav in the future that takes up teh whole page. the content renders depending on what the user has selected -->
+  <li><a href="<%= "#/users/" + user.id %>">Posts</a></li>
+  <li><a href="<%= "#/users/" + user.id  + "/photos" %>">Photos</a></li>
+  <li><a href="<%= "#/users/" + user.id  + "/friends" %>">Friends</a></li>
+</ul>
+
+  
+<div id="profile-content">
+  <div id="user-posts">
+    <% user.get('posts').models.forEach(function(post) { %>
+      <div class="post" data-id="<%= post.id %>" data-type="post"%>
+        post goes here
+      </div>
+    <% }) %>
+  </div>
+</div>

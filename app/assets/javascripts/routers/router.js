@@ -9,6 +9,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
     EggsBook.currentUser = new EggsBook.Models.User({'id': 'current'});
 
     EggsBook.foods.fetch();
+    EggsBook.posts.fetch();
     // EggsBook.users.fetch();
     // EggsBook.posts.fetch();
     // EggsBook.comments.fetch();
@@ -22,7 +23,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
   },
 
   post: function(id) {
-    EggsBook.currentUser.fetch();
+    if(!EggsBook.currentUser.get('name')) EggsBook.currentUser.fetch();
     console.log("on show post route");
     var that = this;
 
@@ -33,6 +34,8 @@ EggsBook.Routers.Router = Backbone.Router.extend({
   },
 
   user: function(id) {
+    if(!EggsBook.currentUser.get('name')) EggsBook.currentUser.fetch();
+
     var that = this;
     this._getUser(id, function(user) {
       var userProfileView = new EggsBook.Views.UserProfileView({model: user});
@@ -53,14 +56,13 @@ EggsBook.Routers.Router = Backbone.Router.extend({
     }
   },
 
+  // change this to pull down all users. less secure, but will be faster.
   _getUser: function(id, callback) {
     var user = EggsBook.users.get(id);
     if (!user) {
-      user = EggsBook.users.create();
-      user.id = id;
-      user.fetch({
+      EggsBook.users.fetch({
         success: function() {
-          callback(user);
+          callback(EggsBook.users.get(id));
         }
       });
     } else {

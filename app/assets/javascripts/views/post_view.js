@@ -175,7 +175,3 @@ EggsBook.Views.PostView = Backbone.View.extend({
     this.render();
   },
 });
-
-
-
-
