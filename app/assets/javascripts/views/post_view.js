@@ -16,6 +16,8 @@ EggsBook.Views.PostView = Backbone.View.extend({
   post_skeleton_template: JST['posts/post_skeleton'],
   comment_skeleton_template: JST['posts/comment_skeleton'],
   like_button_template: JST['posts/like_button'],
+  liking_users_template: JST['posts/liking_users'],
+  details_template: JST['posts/details'],
 
   render: function() {
     return this.render_post_piecewise();
@@ -27,65 +29,33 @@ EggsBook.Views.PostView = Backbone.View.extend({
 
   render_post_piecewise: function() {
     console.log("chained rendering invoked!");
-    return this._render_post_skeleton()
-               ._render_comment_skeletons()
-               ._render_like_buttons();
+    return this._renderPostSkeleton()
+               ._renderCommentSkeleton()
+               ._renderLikeButtons()
+               ._renderLikingUsers()
+               ._renderDetails();
   },
 
-  _render_post_skeleton: function() {
+  _renderPostSkeleton: function() {
     var renderedContent = this.post_skeleton_template({post: this.model, currentUser: EggsBook.currentUser});
     this.$el.html(renderedContent);
     return this;
   },
 
-  _render_comment_skeletons: function() {
-    var that = this;
-    var comments = this.$el.find('.comment');
-    $.each(comments, function(i) {
-      commentEl = $(comments[i]);
-      commentId = commentEl.data('id');
-      commentToAdd = that.model.get('comments').get(commentId);
-      renderedComment = that.comment_skeleton_template({comment:commentToAdd});
-      commentEl.html(renderedComment);
-    });
-    return this;
+  _renderCommentSkeleton: function() {
+    return this._renderAbstracted('comment', this.comment_skeleton_template);
   },
 
-  _render_like_buttons: function() {
+  _renderLikeButtons: function() {
     return this._renderAbstracted('like-button', this.like_button_template);
-        // var that = this;
-    // var likeButtons = this.$el.find('.like-button');
-
-    // var jqObj, objId, objType, objToAdd, objToRender;
-
-    // $.each(likeButtons, function(i) {
-    //   jqObj = $(likeButtons[i]);
-    //   objId = jqObj.data('id');
-
-    //   objType = jqObj.data('type');
-    //   if(objType == "post") {
-    //     objToAdd = that.model;
-    //   } else {
-    //     objToAdd = that.model.get('comments').get(objId);
-    //   }
-
-    //   objToRender = that.like_button_template({
-    //     objToRender:objToAdd,
-    //     currentUser: EggsBook.currentUser,
-    //     dataType: objType
-    //   });
-
-    //   jqObj.html(objToRender);
-    // });
-    // return this;
   },
 
   _renderLikingUsers: function() {
-
+    return this._renderAbstracted('liking-users', this.liking_users_template);
   },
 
   _renderDetails: function() {
-
+    return this._renderAbstracted('details', this.details_template);
   },
 
   _renderAbstracted: function(className, template) {
@@ -196,12 +166,12 @@ EggsBook.Views.PostView = Backbone.View.extend({
     var likedObjIds = EggsBook.currentUser.get(attrName);
 
     if(action == "like"){
-      console.log("attempting to like");
       _like();
     } else {
-      console.log("attempting to unLike");
       _unLike();
     }
+
+    // can't get event listeners to work here...
     this.render();
   },
 });

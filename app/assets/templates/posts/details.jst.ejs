@@ -1,0 +1,7 @@
+<% var user = objToRender.get('user') %>
+<a href="#/users/<%= user.id %>">
+  <img src="<%= user.get('photo_urls').icon %>" style="float:left">
+  <%= user.get('name') %>
+</a>
+  <br>
+  <%= objToRender.get('details') %>
