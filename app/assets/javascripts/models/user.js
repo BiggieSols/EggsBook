@@ -17,4 +17,16 @@ EggsBook.Models.User = Backbone.Model.extend({
     return response;
   },
 
-});
+  friendStatus: function(otherUser) {
+    otherId = otherUser.id;
+    if(_.include(this.get('friend_ids'), otherId)) {
+      return "friend";
+    } else if(_.include(this.get('friends_requested_ids'), otherId)) {
+      return "requiresFriendResponse";
+    } else if(_.include(this.get('users_requesting_friendship_ids'), otherId)) {
+      return "requiresYourResponse";
+    } else {
+      return "";
+    }
+  }
+})

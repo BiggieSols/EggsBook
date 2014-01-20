@@ -28,7 +28,12 @@ EggsBook::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :friend_requests, only: [:create, :destroy]
-  resources :friendships, only: [:create, :destroy]
+  # resources :friendships, only: [:create, :destroy]
+
+  post 'users/:friend_id/friendships/:id', to: 'friendships#create', as: "friendship"
+  delete 'users/:friend_id/friendships/:id', to: 'friendships#destroy', as: "friendship"
+
+
 
   # may not need this
   resources :foods

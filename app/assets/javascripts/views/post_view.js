@@ -104,7 +104,6 @@ EggsBook.Views.PostView = Backbone.View.extend({
 
     var formData = $(event.currentTarget).serializeJSON();
     formData.comment.post_id = this.model.id;
-    console.log(formData);
 
     var comment = new EggsBook.Models.Comment(formData.comment);
 
@@ -130,7 +129,7 @@ EggsBook.Views.PostView = Backbone.View.extend({
       likedObjIds = likedObjIds.concat(dataId);
 
       _setAttributes();
-
+      
       target.get('liking_users').add(EggsBook.currentUser);
       likeObj.save();
     };

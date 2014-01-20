@@ -1,3 +1,20 @@
+<br><br>
+
+<% var friendStatus = currentUser.friendStatus(user) %>
+
+
+<% if(friendStatus === "friend") { %>
+  <button class="friend-remove" data-id="<%= user.id %>">Remove Friend</button>
+<% } else if(friendStatus == "requiresFriendResponse") { %>
+  <%=  "awaiting friend response" %>
+<% } else if(friendStatus == "requiresYourResponse") { %>
+  <button class="friend-confirm" data-id="<%= user.id %>">Confirm Friend</button>
+<% } else { %>
+  <button class="friend-add" data-id="<%= user.id %>">Add Friend</button>
+<% } %>
+
+
+<br>
 <img src="<%= user.get('photo_urls').medium %>">
 
 <% _.keys(user.attributes).forEach(function(key) { %>

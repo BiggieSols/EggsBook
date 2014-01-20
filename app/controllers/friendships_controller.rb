@@ -20,6 +20,7 @@ class FriendshipsController < ApplicationController
     friendship = Friendship.find_by_user_id_and_friend_id(current_user.id, params[:friend_id])
     friendship.destroy
     flash.now[:success] = "un-friended!"
-    redirect_to users_url
+    render json: true
+    # redirect_to users_url
   end
 end
