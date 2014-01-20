@@ -10,6 +10,19 @@ EggsBook.Routers.Router = Backbone.Router.extend({
 
     EggsBook.foods.fetch();
     EggsBook.posts.fetch();
+
+    // var foodFetch = EggsBook.foods.fetch();
+    // var popstsFetch = EggsBook.posts.fetch();
+
+    // $.when(foodFetch, popstsFetch).then(function  () {
+    //   / / body...
+
+    // // })
+
+    // foodFetch.done(function  (argument) {
+    //   // body...
+
+    // })
     // EggsBook.users.fetch();
     // EggsBook.posts.fetch();
     // EggsBook.comments.fetch();

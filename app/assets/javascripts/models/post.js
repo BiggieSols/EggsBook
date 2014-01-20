@@ -5,8 +5,10 @@ EggsBook.Models.Post = Backbone.Model.extend({
         // var parsed_comments = new EggsBook.Collections.Comments().parse(response.comments);
         // response.comments = new EggsBook.Collections.Comments(parsed_comments);
 
+    // use {parse: true}
+
     // method 2
-    var comments = new EggsBook.Collections.Comments();
+    var comments = new EggsBook.Collections.Comments();  
     var parsed_comments = comments.parse(response.comments);
     comments.set(parsed_comments);
     response.comments = comments;

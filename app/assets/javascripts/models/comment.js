@@ -13,9 +13,7 @@ EggsBook.Models.Comment = Backbone.Model.extend({
   // collection: EggsBook.Collections.Comments,
 
   parse: function(response) {
-    var liking_users = new EggsBook.Collections.Users();
-    parsed_liking_users = liking_users.parse(response.liking_users);
-    liking_users.set(parsed_liking_users);
+    var liking_users = new EggsBook.Collections.Users(response.liking_users, {parse: true});
     response.liking_users = liking_users;
     response.user = new EggsBook.Models.User(response.user);
     return response;

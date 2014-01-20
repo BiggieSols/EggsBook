@@ -3,6 +3,9 @@
 
 <!-- user name -->
 <%= post.get('user').get('name') %>
+<!-- details -->
+<%= post.get('details') %>
+
 <br>
 
 <!-- post like/unlike button -->
@@ -16,14 +19,6 @@
     post-liking-users go here
   </div>
 <br>
-</div>
-
-
-<!-- details 
-<%= post.get('details') %>
--->
-<div class="details" data-type="post" data-id="<%= post.id %>">
-  post details go here
 </div>
 
 <br>

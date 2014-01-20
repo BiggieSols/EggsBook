@@ -175,3 +175,5 @@ EggsBook.Views.PostView = Backbone.View.extend({
     this.render();
   },
 });
+
+// _.extend(EggsBook.Views.PostView.prototype, EggsBook.Mixins.+);
