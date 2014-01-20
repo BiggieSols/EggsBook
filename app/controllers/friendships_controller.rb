@@ -23,6 +23,5 @@ class FriendshipsController < ApplicationController
     friendship_2.destroy
     flash.now[:success] = "un-friended!"
     render json: true
-    # redirect_to users_url
   end
 end

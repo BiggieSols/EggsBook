@@ -1,4 +1,6 @@
 // probably needs to be converted to a collection
-EggsBook.Models.Feed = Backbone.Model.extend({
-  url: '/feed'
-})
+EggsBook.Collections.Feed = Backbone.Collection.extend({
+  url: '/feed',
+
+  model: EggsBook.Models.Post,
+});
