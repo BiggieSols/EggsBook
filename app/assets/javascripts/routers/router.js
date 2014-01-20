@@ -49,6 +49,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
 
   feed: function() {
     // EggsBook.feed.fetch();
+    EggsBook.currentUser.fetch();
     var feedView = new EggsBook.Views.FeedView({collection: EggsBook.feed});
     this._swapView(feedView);
   },

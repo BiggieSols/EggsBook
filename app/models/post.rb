@@ -20,4 +20,15 @@ class Post < ActiveRecord::Base
   def liked_by_user?(user)
     return user.liked_posts.include?(self)
   end
+
+  def image_urls
+    if self.image.url == "/images/original/missing.png"
+      return {} 
+    else
+      sizes = [:small, :medium, :large]
+      photo_urls = {}
+      sizes.each {|size| photo_urls[size] = self.image.url(size)}
+      return photo_urls
+    end
+  end
 end

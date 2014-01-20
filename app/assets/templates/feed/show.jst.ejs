@@ -1,4 +1,21 @@
 <br><br>
+<h1>Write a Post</h1>
+
+<form id="new-post" action="/posts" method="POST" enctype="multipart/form-data">
+
+  <label for="post_details">Post</label>
+  <input type="text"
+          name="post[details]"
+          id="post_details">
+
+  <input type="file"
+         name="post[image]"
+         accept="image/*">
+
+  <input type="submit" value="Create Post">
+</form>
+
+
 <h1>Your Feed</h1>
 
 <div id="feed-posts">

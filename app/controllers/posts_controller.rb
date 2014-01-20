@@ -12,11 +12,13 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
     if @post.save
-      redirect_to user_url(current_user)
+      # redirect_to user_url(current_user)
+      render json: @post
     else
       errors = @post.errors.full_messages
       flash[:errors] = errors
-      redirect_to user_url(current_user)
+      # redirect_to user_url(current_user)
+      render json: @post.errors
     end
   end
 
