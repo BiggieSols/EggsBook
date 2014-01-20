@@ -1,7 +1,6 @@
 <% var user = objToRender.get('user') %>
-<a href="#/users/<%= user.id %>">
+<a href="#/users/<%= user.id %>" style="font-size:15px">
   <img src="<%= user.get('photo_urls').icon %>" style="float:left">
   <%= user.get('name') %>
 </a>
-  <br>
-  <%= objToRender.get('details') %>
+  <span class="comment-text" style="font-size"><%= objToRender.get('details') %></span>
