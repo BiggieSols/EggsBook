@@ -1,0 +1,50 @@
+<!-- user photo -->
+<img src="<%= post.get('user').get('photo_urls').small %>">
+
+<!-- user name -->
+<%= post.get('user').get('name') %>
+<br>
+
+<!-- post like/unlike button -->
+<div style="display:inline-block">
+  <div class="like-button" data-type="post" data-id="<%= post.id %>">
+    post like button goes here
+  </div>
+
+ <!-- liking_users -->
+  <div class="liking-users" data-type="post" data-id="<%= post.id %>">
+    post-liking-users go here
+  </div>
+<br>
+</div>
+
+
+<!-- details 
+<%= post.get('details') %>
+-->
+<div class="details" data-type="post" data-id="<%= post.id %>">
+  post details go here
+</div>
+
+<br>
+<br>
+
+<!-- comments (include photo, name, comment, like) -->
+<div>
+<% _.each(post.get('comments').models, function(comment) { %>
+  <div class="comment" data-type="comment" data-id="<%= comment.id %>">
+    comment goes here
+  </div>
+  <br><br>
+<% }); %>
+</div>
+
+<!-- add comment field -->
+<form id="new_comment">
+  <input  type="text" 
+          name="comment[details]" 
+          id="comment_details" 
+          placeholder="Write a comment...">
+
+  <input type="submit" value="add comment">
+</form>
