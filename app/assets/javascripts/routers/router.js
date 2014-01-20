@@ -7,6 +7,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
     EggsBook.comments = new EggsBook.Collections.Comments();
     EggsBook.foods = new EggsBook.Collections.Foods();
     EggsBook.currentUser = new EggsBook.Models.User({'id': 'current'});
+    EggsBook.feed = new EggsBook.Collections.Feed();
 
     EggsBook.foods.fetch();
     EggsBook.posts.fetch();
@@ -44,6 +45,12 @@ EggsBook.Routers.Router = Backbone.Router.extend({
       var postView = new EggsBook.Views.PostView({model: post});
       that._swapView(postView);
     });
+  },
+
+  feed: function() {
+    // EggsBook.feed.fetch();
+    var feedView = new EggsBook.Views.FeedView({collection: EggsBook.feed});
+    this._swapView(feedView);
   },
 
   user: function(id) {

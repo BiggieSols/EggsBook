@@ -1,0 +1,10 @@
+<br><br>
+<h1>Your Feed</h1>
+
+<div id="feed-posts">
+  <% feed.models.forEach(function(post) { %>
+    <div class="post" data-id="<%= post.id %>" data-type="post"%>
+      post goes here
+    </div>
+  <% }); %>
+</div>

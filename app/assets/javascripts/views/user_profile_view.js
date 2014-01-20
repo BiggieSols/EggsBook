@@ -19,7 +19,7 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
   renderTop: function() {
     console.log("rendering top");
     var renderedContent = this.template({
-      user: this.model ,
+      user: this.model,
       foods: EggsBook.foods,
       currentUser: EggsBook.currentUser
     });
@@ -41,7 +41,7 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
     return this;
   },
 
-  friendRemove: function(event) {
+  friendRemove: function() {
     console.log("attempting to remove friend");
     var friendship = new EggsBook.Models.Friendship({"friend_id": this.model.id});
 
@@ -56,7 +56,7 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
     });
   },
 
-  friendConfirm: function(event) {
+  friendConfirm: function() {
     console.log("attempting to confirm friend");
     var friendship = new EggsBook.Models.Friendship({"friend_id": this.model.id});
 
@@ -67,7 +67,7 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
     });
   },
 
-  friendAdd: function(event) {
+  friendAdd: function() {
     console.log("attempting to add friend");
     var friendRequest = new EggsBook.Models.FriendRequest({"friend_id": this.model.id});
     friendRequest.save({}, {
