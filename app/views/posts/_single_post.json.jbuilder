@@ -1,5 +1,7 @@
 json.(post, :id, :details, :image_urls)
 
+json.timestamp(post.updated_at.to_i * 1000)
+
 json.user do
   json.partial!('users/user_lite', user: post.posting_user)
 end

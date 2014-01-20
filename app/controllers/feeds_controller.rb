@@ -5,7 +5,7 @@ class FeedsController < ApplicationController
     @feed_posts += current_user.liked_posts
     @feed_posts.flatten.uniq
     @feed_posts.sort_by! {|post| post.updated_at }
-    @feed_posts.reverse!
+    @feed_posts
 
     ids = @feed_posts.map(&:id)
 
