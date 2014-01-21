@@ -6,7 +6,7 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
 
   initialize: function() {
     this.postViews = {};
-    this.listenTo(EggsBook.currentUser, "sync", this.renderTop);
+    this.listenTo(EggsBook.currentUser, "sync", this.render);
   },
 
   events: {
