@@ -1,0 +1,7 @@
+<div id="user-posts">
+  <% user.get('posts').withPhotos().forEach(function(post) { %>
+    <div class="photo" data-id="<%= post.id %>" data-type="photo"%>
+      photo goes here
+    </div>
+  <% }) %>
+</div>

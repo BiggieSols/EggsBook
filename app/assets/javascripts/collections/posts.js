@@ -7,7 +7,20 @@ EggsBook.Collections.Posts = Backbone.Collection.extend({
 
 
 
-  url: '/posts'
+  url: '/posts',
+
+  withPhotos: function() {
+    var photoPosts = [];
+    this.models.forEach(function(post) {
+      // see if there are images available
+      if(post.get('image_urls').small) {
+        console.log("success");
+        photoPosts.push(post);
+      }
+    });
+
+    return photoPosts;
+  }
 
   // parse: function(response, options) {
     // console.log(response);

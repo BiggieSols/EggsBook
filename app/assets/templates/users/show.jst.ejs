@@ -31,18 +31,11 @@
 
 <ul>
   <!-- note: have this as a nav in the future that takes up teh whole page. the content renders depending on what the user has selected -->
-  <li><a href="<%= "#/users/" + user.id %>">Posts</a></li>
-  <li><a href="<%= "#/users/" + user.id  + "/photos" %>">Photos</a></li>
-  <li><a href="<%= "#/users/" + user.id  + "/friends" %>">Friends</a></li>
+  <li id="render-posts"><a>Posts</a></li>
+  <li id="render-photos"><a>Photos</a></li>
+  <li id="render-friends"><a>Friends</a></li>
 </ul>
 
 
 <div id="profile-content">
-  <div id="user-posts">
-    <% user.get('posts').models.forEach(function(post) { %>
-      <div class="post" data-id="<%= post.id %>" data-type="post"%>
-        post goes here
-      </div>
-    <% }) %>
-  </div>
 </div>
