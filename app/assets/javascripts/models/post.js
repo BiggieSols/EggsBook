@@ -1,4 +1,5 @@
 EggsBook.Models.Post = Backbone.Model.extend({
+  urlRoot: '/posts',
   parse: function(response) {
     // need to switch this to use {parse: true} but running into a bug for some reason... TBD.
     var comments = new EggsBook.Collections.Comments();

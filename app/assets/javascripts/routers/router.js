@@ -31,7 +31,7 @@ EggsBook.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'feed',
+    'feed': 'feed',
     'users/:id' : 'user',
     'posts/:id' : 'post'
   },

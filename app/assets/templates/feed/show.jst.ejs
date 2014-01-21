@@ -1,8 +1,7 @@
 <br><br>
 <h1>Write a Post</h1>
 
-<form id="new-post" action="/posts" method="POST" enctype="multipart/form-data">
-
+<form enctype="multipart/form-data">
   <label for="post_details">Post</label>
   <input type="text"
           name="post[details]"
@@ -12,9 +11,8 @@
          name="post[image]"
          accept="image/*">
 
-  <input type="submit" value="Create Post">
+  <button id="new-post">Create Post</button>
 </form>
-
 
 <h1>Your Feed</h1>
 

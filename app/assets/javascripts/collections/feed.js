@@ -5,8 +5,6 @@ EggsBook.Collections.Feed = Backbone.Collection.extend({
   model: EggsBook.Models.Post,
 
   comparator: function(model) {
-    console.log(model.get('timestamp'));
-    return model.get('timestamp') * -1;
+    return -model.get('timestamp');
   }
-
-});
+}); 
