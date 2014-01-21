@@ -58,7 +58,7 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
   // move to renderAbstracted
   _renderIndividualPosts: function() {
     if(EggsBook.posts.models.length > 0) {
-      var $posts = this.$el.find('.post-holder');
+      var $posts = this.$el.find('.post-container');
       $.each($posts, function(i) {
         var jqPost = $posts.eq(i);
         var id = jqPost.data('id');

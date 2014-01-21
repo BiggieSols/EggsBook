@@ -48,13 +48,13 @@ EggsBook.Routers.Router = Backbone.Router.extend({
   },
 
   feed: function() {
-    // EggsBook.feed.fetch();
     EggsBook.currentUser.fetch();
     var feedView = new EggsBook.Views.FeedView({collection: EggsBook.feed});
     this._swapView(feedView);
   },
 
   user: function(id) {
+    $(document).scrollTop();
     if(!EggsBook.currentUser.get('name')) EggsBook.currentUser.fetch();
 
     var that = this;
@@ -98,5 +98,6 @@ EggsBook.Routers.Router = Backbone.Router.extend({
     this.currentView = view;
 
     this.$rootEl.html(view.render().$el);
+    $('body').animate({ scrollTop: 0 }, 0);
   }
-})
+});

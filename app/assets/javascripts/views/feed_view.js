@@ -30,7 +30,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
 
   renderPosts: function() {
     if(this.collection.models.length > 0) {
-      var $posts = this.$el.find('.post');
+      var $posts = this.$el.find('.post-container');
       $.each($posts, function(i) {
         var jqPost = $posts.eq(i);
         var id = jqPost.data('id');
