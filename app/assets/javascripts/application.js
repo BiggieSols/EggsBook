@@ -18,6 +18,7 @@
 //= require backbone
 //= require fileHandler
 //= require dropzone
+//= require masonry
 //= require eggs_book
 //= require_tree ../templates
 //= require_tree ./models

@@ -1,24 +1,27 @@
 <br><br>
 <h1>Write a Post</h1>
 
-<form enctype="multipart/form-data" class="dropzone" action="/">
-  <div class="form-group">
-    <label for="post_details">Post</label>
-    <input  type="text"
-            name="post[details]"
-            id="post_details"
-            class="form-control">
+<div class="row">
+  <div class="col-xs-7">
+    <form enctype="multipart/form-data" class="dropzone" action="/">
+      <span class="form-group">
+        <input  type="text"
+        name="post[details]"
+        id="post_details"
+        class="form-control"
+        placeholder="What's on your mind?">
+      </div>
+
+      <input type="file" accept="image/*">
+      <button id="new-post" class="btn btn-primary bnt-large">Create Post</button>
+    </div>
   </div>
 
-  <input type="file" accept="image/*">
-</div>
-
-<button id="new-post" class="btn btn-primary bnt-large">Create Post</button>
 </form>
 
 <h1>Your Feed</h1>
 
-<div id="feed-posts">
+<div id="feed-posts" class="js-masonry" data-masonry-options='{"columnWidth": 280, "itemSelector": ".post"}'>
   <% feed.models.forEach(function(post) { %>
   <div class="post-container" data-id="<%= post.id %>" data-type="post"%>
     post goes here

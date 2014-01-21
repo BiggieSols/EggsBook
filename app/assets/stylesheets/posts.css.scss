@@ -2,21 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.post-image {
+.posting-user-image {
   float:left;
-  padding: 2px
+  padding: 2px;
+  max-width: 100%;
 }
 
 .post-username {
   font-size: 1.3em;
 }
 
-.post {
+.post { 
   border: 1px solid gray;
   background-color: #dddddd;
   border-radius: 2%;
-  padding: 10px 30px;
-  margin: 20px 0px;
+  padding: 10px 15px;
+  margin: 10px 15px;
+
+
+  .post-image {
+    // max-width: 100%;
+    float: left;
+  }
 
   #new-comment {
     padding-top: 5px;
@@ -24,7 +31,8 @@
 
   .like-btn {
     float: left;
-    width: 10%;
+    width: 5%;
+    font-size: 0.5em
   }
 
   .new-comment {
@@ -35,6 +43,12 @@
 
   .like-info {
     padding-top: 4px;
+  }
+
+  .liking-users {
+
+    font-size: 0.7em;
+    color: #444444;
   }
 }
 

@@ -2,9 +2,9 @@
 
 <div class="post">
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-1">
       <a href="#/users/<%= post.get('user').id %>">
-        <img src="<%= post.get('user').get('photo_urls').small %>" class="post-image">
+        <img src="<%= post.get('user').get('photo_urls').small %>" class="posting-user-image">
       </a>
     </div>
     <div class="col-xs-10">
@@ -15,7 +15,7 @@
         <%= post.get('details') %>
       </div>
       <div class="row">
-        <img src="<%= post.get('image_urls').medium %>">
+        <img src="<%= post.get('image_urls').medium %>" class="post-image">
       </div>
 
       <div class="row like-info">
