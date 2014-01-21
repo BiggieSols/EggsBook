@@ -17,11 +17,6 @@
 <br>
 <img src="<%= user.get('photo_urls').medium %>">
 
-<% _.keys(user.attributes).forEach(function(key) { %>
-  <%= key %>: <%= user.get(key) %><br>
-<% }); %>
-
-
 <% user.get('favorite_food_ids').forEach(function(food_id) { %>
   <% var food = foods.get(food_id) %>
   <% if(food) { %>

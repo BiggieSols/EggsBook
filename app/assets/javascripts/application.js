@@ -17,6 +17,7 @@
 //= require underscore
 //= require backbone
 //= require fileHandler
+//= require dropzone
 //= require eggs_book
 //= require_tree ../templates
 //= require_tree ./models

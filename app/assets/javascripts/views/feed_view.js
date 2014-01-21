@@ -1,7 +1,7 @@
 EggsBook.Views.FeedView = Backbone.View.extend({
   initialize: function() {
     this.collection.fetch();
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "sync", this.renderPosts);
     // this.listenTo(EggsBook.feed, "sync", this.render);
   },
 

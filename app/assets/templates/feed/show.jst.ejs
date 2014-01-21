@@ -1,25 +1,27 @@
 <br><br>
 <h1>Write a Post</h1>
 
-<form enctype="multipart/form-data">
-  <label for="post_details">Post</label>
-  <input type="text"
-          name="post[details]"
-          id="post_details">
+<form enctype="multipart/form-data" class="dropzone" action="/">
+  <div class="form-group">
+    <label for="post_details">Post</label>
+    <input  type="text"
+            name="post[details]"
+            id="post_details"
+            class="form-control">
+  </div>
 
-  <input type="file"
-         name="post[image]"
-         accept="image/*">
+  <input type="file" accept="image/*">
+</div>
 
-  <button id="new-post">Create Post</button>
+<button id="new-post" class="btn btn-primary bnt-large">Create Post</button>
 </form>
 
 <h1>Your Feed</h1>
 
 <div id="feed-posts">
   <% feed.models.forEach(function(post) { %>
-    <div class="post-container" data-id="<%= post.id %>" data-type="post"%>
-      post goes here
-    </div>
+  <div class="post-container" data-id="<%= post.id %>" data-type="post"%>
+    post goes here
+  </div>
   <% }); %>
 </div>
