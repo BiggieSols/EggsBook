@@ -1,4 +1,4 @@
-EggsBook.Views.PostImage = Backbone.View.extend({
+EggsBook.Views.PostImageView = Backbone.View.extend({
   tagName: 'span',
   template: JST['posts/show_photo'],
 

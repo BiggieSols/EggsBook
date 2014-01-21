@@ -6,7 +6,6 @@ EggsBook.Views.PostView = Backbone.View.extend({
   },
 
   initialize: function() {
-    // this.listenTo(this.model.get('comments'), "all", this.render);
     this.listenTo(this.model.get('liking_users'), "add remove", this.render);
     this.listenTo(this.model.get('comments'), "add remove change", this.render);
     this.listenTo(EggsBook.currentUser, "sync", this.render);
@@ -21,14 +20,9 @@ EggsBook.Views.PostView = Backbone.View.extend({
 
   render: function() {
     return this.render_post_piecewise();
-    // console.log("rendering!");
-    // var renderedContent = this.template({post: this.model, currentUser: EggsBook.currentUser});
-    // this.$el.html(renderedContent);
-    // return this;
   },
 
   render_post_piecewise: function() {
-    console.log("chained rendering invoked!");
     return this._renderPostSkeleton()
                ._renderCommentSkeleton()
                ._renderLikeButtons()
@@ -174,5 +168,3 @@ EggsBook.Views.PostView = Backbone.View.extend({
     this.render();
   },
 });
-
-// _.extend(EggsBook.Views.PostView.prototype, EggsBook.Mixins.+);
