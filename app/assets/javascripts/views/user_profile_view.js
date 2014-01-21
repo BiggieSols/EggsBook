@@ -13,15 +13,20 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
     'click .friend-remove':'friendRemove',
     'click .friend-confirm':'friendConfirm',
     'click .friend-add':'friendAdd',
-    'click #render-photos':'renderPhotos'
+    'click #render-photos':'renderPhotos',
+    'click #render-posts': 'renderPosts'
   },
 
   render: function() {
-    return this._renderTop()._renderPostsSkeleton()._renderIndividualPosts();
+    return this._renderTop().renderPosts();
   },
 
   renderPhotos: function() {
     return this._renderPhotosSkeleton()._renderIndividualPhotos();
+  },
+
+  renderPosts: function() {
+    return this._renderPostsSkeleton()._renderIndividualPosts();
   },
 
   _renderTop: function() {
