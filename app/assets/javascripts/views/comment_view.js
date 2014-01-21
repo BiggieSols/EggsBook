@@ -1,12 +1,25 @@
 EggsBook.Views.CommentView = Backbone.View.extend({
-  template: JST['posts/comment_skeleton'],
+  skeletonTemplate: JST['comments/comment_skeleton'],
   likeButtonTemplate: JST['posts/like_button'],
   likingUsersTemplate: JST['posts/liking_users'],
-  userPhotoTemplate: JST['comments/comment_user_photo'],
-  commentDetailsTemplate: JST['comments/comment_details'],
+  userPhotoTemplate: JST['comments/user_photo'],
+  commentDetailsTemplate: JST['comments/details'],
 
   render: function() {
-    this.$el.append("comment view will render here");
+    // this.$el.html("single comment view will render here");
+
+    this._renderSkeleton()
+        ._renderUserPhoto()
+        ._renderCommentDetails()
+        ._renderLikeButton()
+        ._renderLikingUsers();
+
+    return this;
+  },
+
+  _renderSkeleton: function() {
+    var renderedContent = this.skeletonTemplate();
+    this.$el.html(renderedContent);
     return this;
   },
 
@@ -14,7 +27,8 @@ EggsBook.Views.CommentView = Backbone.View.extend({
     var renderedContent = this.userPhotoTemplate({
       user: this.model.get('user')
     });
-    this.$el.append(renderedContent);
+    var $elToFill = this.$el.find('.user-photo');
+    $elToFill.html(renderedContent);
     return this;
   },
 
@@ -22,23 +36,28 @@ EggsBook.Views.CommentView = Backbone.View.extend({
     var renderedContent = this.commentDetailsTemplate({
       objToRender: this.model
     });
-    this.$el.append(renderedContent);
+    var $elToFill = this.$el.find('.details');
+    $elToFill.html(renderedContent);
     return this;
   },
 
-  _renderLikButton: function() {
+  _renderLikeButton: function() {
     var renderedContent = this.likeButtonTemplate({
-      objToRender: this.model
+      objToRender: this.model,
+      currentUser: EggsBook.currentUser,
+      dataType: "comment"
     });
-    this.$el.append(renderedContent);
+    var $elToFill = this.$el.find('.like-button');
+    $elToFill.html(renderedContent);
     return this;
   },
 
   _renderLikingUsers: function() {
-    var renderedContent = this.likeButtonTemplate({
+    var renderedContent = this.likingUsersTemplate({
       objToRender: this.model
     });
-    this.$el.append(renderedContent);
+    var $elToFill = this.$el.find('.liking-users');
+    $elToFill.html(renderedContent);
     return this;
   }
 });

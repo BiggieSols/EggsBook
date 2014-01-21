@@ -24,9 +24,11 @@ EggsBook.Views.PostView = EggsBook.Views.LikableObject.extend({
 
   render_post_piecewise: function() {
     return this._renderPostSkeleton()
-               ._renderLikeButton();
+               ._renderLikeButton()
+               ._renderLikingUsers()
+               ._renderComments();
                // ._renderCommentSkeleton()
-               // ._renderLikingUsers()
+               
                // ._renderDetails();
   },
 
@@ -49,18 +51,29 @@ EggsBook.Views.PostView = EggsBook.Views.LikableObject.extend({
   },
 
   _renderLikingUsers: function(){
-    var renderedContent = this.likeButtonTemplate({objToRender: this.model});
-    var $elToFill = this.$el.find('liking-users');
+    var renderedContent = this.likingUsersTemplate({
+      objToRender: this.model,
+    });
+    var $elToFill = this.$el.find('.liking-users');
     $elToFill.html(renderedContent);
     return this;
   },
 
   _renderDetails: function() {
     var renderedContent = this.likeButtonTemplate({objToRender: this.model});
-    var $elToFill = this.$el.find('details');
+    var $elToFill = this.$el.find('.details');
     $elToFill.html(renderedContent);
     return this;
   },
+
+  _renderComments: function() {
+    var comments = this.model.get('comments');
+    var commentsView = new EggsBook.Views.CommentsView({collection: comments});
+    var renderedContent = commentsView.render().$el;
+    var $elToFill = this.$el.find('.post-comments');
+    $elToFill.html(renderedContent);
+    return this;
+  }
 
   // _renderCommentSkeleton: function() {
   //   return this._renderAbstracted('comment', this.commentSkeletonTemplate);
@@ -116,23 +129,4 @@ EggsBook.Views.PostView = EggsBook.Views.LikableObject.extend({
   //     return this.model.get('comments').get(objId);
   //   }
   // },
-
-  add_comment: function(event) {
-    var that = this;
-
-    event.preventDefault();
-
-    var formData = $(event.currentTarget).serializeJSON();
-    formData.comment.post_id = this.model.id;
-
-    var comment = new EggsBook.Models.Comment(formData.comment);
-
-    console.log(comment);
-
-    comment.save({}, {
-      success: function() {
-        that.model.get('comments').add(comment);
-      },
-    });
-  },
 });
