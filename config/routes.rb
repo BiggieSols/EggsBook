@@ -11,9 +11,6 @@ EggsBook::Application.routes.draw do
   resources :comments, only: [:index, :show]
   ###########################################
 
-  get '/users/:id/photos', to: 'users#photos', as: "user_photos"
-  get '/users/:id/friends', to: 'users#friends', as: "user_friends"
-
   get '/feed', to: 'feeds#show', as: "feed"
 
   post 'posts/:post_id/like', to: 'post_likes#create', as: "post_like"

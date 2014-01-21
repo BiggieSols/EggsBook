@@ -1,0 +1,42 @@
+#top-nav{
+  background: #FF9900;
+
+  a {
+    color: #ffffff;
+    font-size: 1.3em;
+    padding: 10px;
+  }
+
+  .top-nav-link {
+    padding-top:20px; 
+  }
+
+  .collapse {
+    background: #FF9900;
+  }ß
+
+  .collapsing {
+    background: #FF9900;
+  }
+
+
+  .brand {
+    height: 50px;
+  }
+
+  .navbar-brand {
+    padding-top: 7px;
+    padding-bottom: 0px;
+    padding-left: 55px;
+  }
+
+  .navbar-right {
+    padding-right: 65px;
+  }
+}
+
+body { 
+  padding-top: 50px;
+  font-family: "Lato","sans-serif";
+  background: #c1eaea;
+}
