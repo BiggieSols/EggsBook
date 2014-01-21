@@ -1,0 +1,17 @@
+<% if(user.id !== currentUser.id) { %>
+  <div id="mutual-friends">
+    <% currentUser.mutualFriends(user).forEach(function(friend_id) { %>
+      <div class="friend" data-id="<%= friend_id %>">
+        mutual friend goes here
+      </div>
+    <% }); %>
+  </div>
+<% } %>
+
+<div id="user-friends">
+  <% user.get('friend_ids').forEach(function(friend_id) { %>
+    <div class="friend" data-id="<%= friend_id %>">
+      user friend goes here
+    </div>
+  <% }); %>
+</div>
