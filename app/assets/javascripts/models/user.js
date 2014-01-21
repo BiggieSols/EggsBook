@@ -30,5 +30,17 @@ EggsBook.Models.User = Backbone.Model.extend({
     } else {
       return "notFriends";
     }
+  },
+
+  mutualFriends: function(otherUser) {
+    var ownFriends = this.get('friend_ids');
+    var otherUserFriends = otherUser.get('friend_ids');
+    var mutualFriends = [];
+    ownFriends.forEach(function(friendId) {
+      if(_.include(otherUserFriends, friendId)) {
+       mutualFriends.push(friendId);
+      } 
+    });
+    return mutualFriends;
   }
 });

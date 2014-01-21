@@ -1,4 +1,4 @@
-json.(user, :id, :name, :email, :about_me, :photo_urls, :favorite_food_ids)
+json.(user, :id, :name, :email, :about_me, :photo_urls, :favorite_food_ids, :friend_ids)
 
 json.posts do
   json.array!(user.posts) do |post|
