@@ -1,6 +1,6 @@
 <% liking_users = objToRender.get('liking_users').models %>
 <% if(liking_users.length > 0) { %>
-  <div><%= dataType %> liked by: 
+  <div>liked by 
     <% _.each(objToRender.get('liking_users').models, function(user) { %>
       <a href="#/users/<%= user.id %>"><%= user.get('name') %></a>
     <% }); %>

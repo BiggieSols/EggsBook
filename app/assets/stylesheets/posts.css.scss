@@ -1,3 +1,55 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-image {
+  float:left;
+  padding: 2px
+}
+
+.post-username {
+  font-size: 1.3em;
+}
+
+.post {
+  border: 1px solid gray;
+  background-color: #dddddd;
+  border-radius: 2%;
+  padding: 10px 30px;
+  margin: 20px 0px;
+
+  #new-comment {
+    padding-top: 5px;
+  }
+
+  .like-btn {
+    float: left;
+    width: 10%;
+  }
+
+  .new-comment {
+    .submit-button {
+      display: none;
+    }
+  }
+}
+
+
+.comment {
+  padding: 5px 0px;
+
+  .like-btn {
+    float: left;
+    width: 100%; 
+    font-size: 0.5em;
+  }
+
+  .comment-like-info {
+    padding-top: 7px;
+  }
+
+  .liking-users {
+    font-size: 0.7em;
+    color: #444444;
+  }
+}

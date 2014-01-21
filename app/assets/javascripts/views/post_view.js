@@ -1,6 +1,6 @@
 EggsBook.Views.PostView = Backbone.View.extend({
   events: {
-    'submit #new_comment':'add_comment',
+    'submit .new-comment':'add_comment',
     'click .like':'toggleLike',
     'click .unLike':'toggleLike'
   },
@@ -8,7 +8,7 @@ EggsBook.Views.PostView = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.model.get('liking_users'), "add remove", this.render);
     this.listenTo(this.model.get('comments'), "add remove change", this.render);
-    this.listenTo(EggsBook.currentUser, "sync", this.render);
+    this.listenTo(EggsBook.currentUser, "sync change add", this.render);
   },
 
   template: JST['posts/show'],
