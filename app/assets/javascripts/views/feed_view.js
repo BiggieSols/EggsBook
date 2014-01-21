@@ -80,6 +80,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
         console.log(post);
         EggsBook.posts.add(post);
         that.collection.add(post);
+        that.photo = undefined;
       },
     });
   }
