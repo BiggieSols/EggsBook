@@ -31,30 +31,10 @@
       </div>
 
       <!-- comments (include photo, name, comment, like) -->
-      <div class="row">
-        <div class="col-xs-10">
-        <% _.each(post.get('comments').models, function(comment) { %>
-          <div class="comment row" data-type="comment" data-id="<%= comment.id %>">
-            comment goes here
-          </div>
-        <% }); %>
-        </div>
+      <div class="post-comments">
+        post comments go here
       </div>
 
-      <div class="row">
-        <!-- add comment field -->
-        <form class="new-comment">
-          <div class="form-group">
-          <input  type="text" 
-          name="comment[details]" 
-          id="comment_details"
-          class="form-control" 
-          placeholder="Write a comment...">
-        </div>
-
-          <input type="submit" value="add comment" class="submit-button">
-        </form>
-      </div>
     </div>
   </div>
 </div>
