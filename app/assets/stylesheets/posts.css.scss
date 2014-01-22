@@ -85,7 +85,9 @@
   display: inline-block;
   height: 113px;
   width: 100%;
-  background-color: white;
+  // background-color: white;
+  background-image: url('dropzone_image.png');
+  // background-image: url('loading_spinner.gif');
   padding: 5px 10px;
   color: #bbbbbb;
   text-align: center;
@@ -94,18 +96,18 @@
   border-radius: 5px;
   margin-top: 2px;
 
-  .drop-zone-text {
-    margin-top: 35px;
+  img {
+    height: 100px;
   }
 }
+
+// .drop-zone-text {
+//   padding-top: 40px;
+// }
 
 #new-post {
   margin-left: 3px;
   width: 100%;
-}
-
-#post-details {
-
 }
 
 .new-post-text {
@@ -115,4 +117,24 @@
 .new-post-create-button {
   padding-left: 1px;
   padding-right: 18px;
+}
+
+.dz-image-preview {
+  height: 100px;
+}
+
+.white-bgcolor {
+  background-color: white;
+}
+
+#post-submission-processing {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  top: 100px;
+  left: 327px;
+}
+
+.invisible {
+  display: none;
 }

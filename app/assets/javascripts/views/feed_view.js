@@ -36,19 +36,23 @@ EggsBook.Views.FeedView = Backbone.View.extend({
       init: function() {
         this.on("addedfile", function(file) { 
           that.encodeFile(file);
+          that.removeDropZoneText();
           // reader.readAsDataURL(file);
         });
       }
     };
 
     this.dropzone = this.$el.find('#drop-zone');
-    console.log("got here");
     this.dropzone.dropzone({
       "url": "/", 
       "autoProcessQueue": false,
       "previewTemplate": "<div class='dz-preview dz-file-preview'><div class='dz-details'><img data-dz-thumbnail /></div><div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></span></div>"
 
     });
+  },
+
+  removeDropZoneText: function() {
+    this.$(".dz-details").addClass("white-bgcolor");
   },
 
   renderPosts: function() {
@@ -75,8 +79,15 @@ EggsBook.Views.FeedView = Backbone.View.extend({
     reader.readAsDataURL(file);
   },
 
+  resetNewPostForm: function() {
+    this.photo = undefined;
+    this.$('#post-submission-processing').toggleClass("invisible");
+    this.$('#drop-zone').html("");
+    this.$('#new-post-details').text("");
+  },
+
   addPost: function(event) {
-    console.log("got here");
+    this.$('#post-submission-processing').toggleClass("invisible");
     event.preventDefault();
     var that = this;
 
@@ -94,7 +105,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
         console.log(post);
         EggsBook.posts.add(post);
         that.collection.add(post);
-        that.photo = undefined;
+        that.resetNewPostForm();
       },
     });
   }
