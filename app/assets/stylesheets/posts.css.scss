@@ -19,14 +19,13 @@
   padding: 10px 15px;
   margin: 10px 15px;
 
-
   .post-image {
     // max-width: 100%;
     float: left;
   }
 
-  #new-comment {
-    padding-top: 5px;
+  .new-comment {
+    margin-top: 5px;
   }
 
   .like-btn {
@@ -46,8 +45,6 @@
   }
 
   .liking-users {
-
-    font-size: 0.7em;
     color: #444444;
   }
 }
@@ -59,7 +56,7 @@
 
   .like-btn {
     float: left;
-    width: 100%;
+    // width: 100%;
   }
 
   .user-photo {

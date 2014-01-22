@@ -1,10 +1,4 @@
 EggsBook.Views.PostView = EggsBook.Views.LikableObject.extend({
-  events: function(){
-      return _.extend(EggsBook.Views.LikableObject.prototype.events, {
-      'submit .new-comment':'add_comment',
-    });
-  },
-
   initialize: function() {
     this.listenTo(this.model.get('liking_users'), "add remove", this.render);
     this.listenTo(this.model.get('comments'), "add remove change", this.render);
@@ -74,59 +68,4 @@ EggsBook.Views.PostView = EggsBook.Views.LikableObject.extend({
     $elToFill.html(renderedContent);
     return this;
   }
-
-  // _renderCommentSkeleton: function() {
-  //   return this._renderAbstracted('comment', this.commentSkeletonTemplate);
-  // },
-
-  // _renderLikeButtons: function() {
-  //   return this._renderAbstracted('like-button', this.likeButtonTemplate);
-  // },
-
-  // _renderLikingUsers: function() {
-  //   return this._renderAbstracted('liking-users', this.likingUsersTemplate);
-  // },
-
-  // _renderDetails: function() {
-  //   return this._renderAbstracted('details', this.detailsTemplate);
-  // },
-
-  // _renderAbstracted: function(className, template) {
-  //   var that = this;
-  //   var jqObj, objId, objType, objToAdd, objToRender;
-
-  //   var jqArrObj = this.$el.find('.' + className);
-  //   $.each(jqArrObj, function(i) {
-  //     jqObj = $(jqArrObj[i]);
-  //     objId = jqObj.data('id');
-
-  //     // this is the string name, e.g. "comment"
-  //     objType = jqObj.data('type');
-
-  //     // _getObjToAdd returns the actual backbone object, e.g. BackBone.Models.Comment
-  //     // you can use these methods elsewhere, and just redefine _getObjToAdd
-  //     objToAdd = that._getObjToAdd(jqObj);
-
-  //     objToRender = template({
-  //       objToRender:objToAdd,
-  //       currentUser: EggsBook.currentUser,
-  //       dataType: objType
-  //     });
-
-  //     jqObj.html(objToRender);
-  //   });
-
-  //   return this;
-  // },
-
-  // _getObjToAdd: function(jqObj) {
-  //   var objType = jqObj.data('type');
-  //   var objId = jqObj.data('id');
-
-  //   if(objType == "post") {
-  //     return this.model;
-  //   } else {
-  //     return this.model.get('comments').get(objId);
-  //   }
-  // },
 });
