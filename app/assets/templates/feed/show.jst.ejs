@@ -4,9 +4,9 @@
 <div class="row">
   <div class="col-xs-12">
     <span id="post-submission-processing" class="invisible">
-      <img src="http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_gray_512.gif" style="height: 80px; width: 80px;">
+      <img src="/assets/ajax_loader_gray_512.gif">
     </span>
-    <form enctype="multipart/form-data" action="/">
+    <form enctype="multipart/form-data" action="/" id="new-post-form">  
       <div class="row">
         <div class="col-xs-10 new-post-text">
           <span class="form-group">
@@ -24,14 +24,8 @@
         </div>
       </div>
 
-
-      <span id="drop-zone" class="drop-zone-text" style=height="300px">
-        <!-- <div class="drop-zone-text"> -->
-          <!-- Click or Drag to Upload a Photo -->
-        <!-- </div> -->
-      </span>
-
-      <!-- <input type="file" accept="image/*"> -->
+      <div id="drop-zone" class="drop-zone-text" style=height="300px">
+      </div>
     </div>
   </div>
 

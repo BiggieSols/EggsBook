@@ -82,7 +82,7 @@
 }
 
 #drop-zone {
-  display: inline-block;
+  display: none;
   height: 113px;
   width: 100%;
   // background-color: white;
@@ -130,9 +130,14 @@
 #post-submission-processing {
   height: 50px;
   width: 50px;
-  position: relative;
-  top: 100px;
+  position: absolute;
+  top: 40px;
   left: 327px;
+  z-index: 1000;
+
+  img {
+    width: 100%;
+  }
 }
 
 .invisible {

@@ -6,6 +6,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
 
   events: {
     'click #new-post':'addPost',
+    'click #new-post-details':'showDropZone',
   },
 
   template: JST['feed/show'],
@@ -15,7 +16,6 @@ EggsBook.Views.FeedView = Backbone.View.extend({
     this.renderTop().renderPosts();
     this.initializeDropZone();
     return this;
-
   },
 
   renderTop: function() {
@@ -28,6 +28,14 @@ EggsBook.Views.FeedView = Backbone.View.extend({
 
     this.$el.html(renderedContent);
     return this;
+  },
+
+  showDropZone: function() {
+    this.$('#drop-zone').slideDown("medium");
+  },
+
+  hideDropZone: function() {
+    this.$('#drop-zone').slideUp("medium");
   },
 
   initializeDropZone: function() {
@@ -88,24 +96,22 @@ EggsBook.Views.FeedView = Backbone.View.extend({
   },
 
   addPost: function(event) {
-    this.$('#post-submission-processing').toggleClass("invisible");
     event.preventDefault();
     var that = this;
+
+    this.$('#post-submission-processing').toggleClass("invisible");
+    this.hideDropZone();
 
     var formData = $(event.currentTarget.form).serializeJSON();
     formData.post.image = this.photo;
 
-    console.log(formData);
-
     var post = new EggsBook.Models.Post(formData);
-
-    console.log(post);
 
     post.save({}, {
       success: function(resp) {
         console.log(post);
         EggsBook.posts.add(post);
-        that.collection.add(post);
+        EggsBook.feed.add(post);
         that.resetNewPostForm();
       },
     });
