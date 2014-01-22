@@ -47,6 +47,11 @@
   .liking-users {
     color: #444444;
   }
+
+  hr {
+    margin: 0px;
+  }
+
 }
 
 
@@ -74,4 +79,40 @@
 
 .user-link {
   font-weight:bold;
+}
+
+#drop-zone {
+  display: inline-block;
+  height: 113px;
+  width: 100%;
+  background-color: white;
+  padding: 5px 10px;
+  color: #bbbbbb;
+  text-align: center;
+  font-size: 1.3em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 2px;
+
+  .drop-zone-text {
+    margin-top: 35px;
+  }
+}
+
+#new-post {
+  margin-left: 3px;
+  width: 100%;
+}
+
+#post-details {
+
+}
+
+.new-post-text {
+  padding-right:0px;
+}
+
+.new-post-create-button {
+  padding-left: 1px;
+  padding-right: 18px;
 }

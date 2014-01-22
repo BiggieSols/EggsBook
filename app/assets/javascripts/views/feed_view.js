@@ -6,7 +6,6 @@ EggsBook.Views.FeedView = Backbone.View.extend({
 
   events: {
     'click #new-post':'addPost',
-    'change input[type=file]': 'encodeFile'
   },
 
   template: JST['feed/show'],
@@ -36,8 +35,8 @@ EggsBook.Views.FeedView = Backbone.View.extend({
     Dropzone.options.dropZone = {
       init: function() {
         this.on("addedfile", function(file) { 
-          console.log(file);
-          reader.readAsDataURL(file);
+          that.encodeFile(file);
+          // reader.readAsDataURL(file);
         });
       }
     };
@@ -46,8 +45,21 @@ EggsBook.Views.FeedView = Backbone.View.extend({
     console.log("got here");
     this.dropzone.dropzone({
       "url": "/", 
-      "autoProcessQueue": false
+      "autoProcessQueue": false,
+      "previewTemplate": "<div class='dz-preview dz-file-preview'><div class='dz-details'><img data-dz-thumbnail /></div><div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></span></div>"
+
     });
+  },
+
+  renderPosts: function() {
+    var postsView = new EggsBook.Views.PostsView({collection: this.collection});
+    var $elToFill = this.$el.find('.posts-container');
+    $elToFill.html(postsView.render().$el);
+    return this;
+  },
+
+  encodeFile: function (file) {
+    var that = this;
 
     var reader = new FileReader();
     reader.onload = function(e) {
@@ -59,23 +71,8 @@ EggsBook.Views.FeedView = Backbone.View.extend({
       console.log("error", stuff);
       console.log (stuff.getMessage());
     };
-  },
 
-  renderPosts: function() {
-    var postsView = new EggsBook.Views.PostsView({collection: this.collection});
-    var $elToFill = this.$el.find('.posts-container');
-    $elToFill.html(postsView.render().$el);
-    return this;
-  },
-
-  encodeFile: function (event) {
-    var that = this;
-    var file = event.currentTarget.files[0];
-    
-    // console.log(file);
-    
-
-    console.log("got here");
+    reader.readAsDataURL(file);
   },
 
   addPost: function(event) {
