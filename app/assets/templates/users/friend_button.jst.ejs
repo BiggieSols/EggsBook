@@ -1,0 +1,13 @@
+<% var friendStatus = currentUser.friendStatus(user), btnClass, btnText %>
+
+<% if(friendStatus === "friend") { %>
+    <button class="friend-remove btn btn-danger" data-id="<%= user.id %>">Remove Friend</button>
+<% } else if(friendStatus == "requiresFriendResponse") { %>
+
+  <button class="btn btn-default" disabled="disabled">Request Sent</button>
+
+<% } else if(friendStatus == "requiresYourResponse") { %>
+  <button class="friend-confirm btn btn-primary" data-id="<%= user.id %>">Confirm Friend</button>
+<% } else if(friendStatus == "notFriends") { %>
+  <button class="friend-add btn btn-primary" data-id="<%= user.id %>">Add Friend</button>
+<% } %>
