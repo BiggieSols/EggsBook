@@ -57,4 +57,3 @@ EggsBook.Views.FriendButton = Backbone.View.extend({
     });
   }
 });
-

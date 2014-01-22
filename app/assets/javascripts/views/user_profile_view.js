@@ -1,6 +1,6 @@
 EggsBook.Views.UserProfileView = Backbone.View.extend({
   template: JST['users/show'],
-  postsSkeletonTemplate: JST['users/posts_skeleton'],
+  // postsSkeletonTemplate: JST['users/posts_skeleton'],
   photosSkeletonTemplate: JST['users/photos_skeleton'],
   friendsSkeletonTemplate: JST['users/friends_skeleton'],
 
@@ -34,7 +34,12 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
   },
 
   renderPosts: function() {
-    return this._renderPostsSkeleton()._renderIndividualPosts();
+    var postsView = new EggsBook.Views.PostsView({
+      collection: this.model.get('posts')
+    });
+
+    this.$el.find("#profile-content").html(postsView.render().$el);
+    return this;
   },
 
   _renderTop: function() {
@@ -42,7 +47,6 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
     var renderedContent = this.template({
       user: this.model,
       foods: EggsBook.foods,
-      currentUser: EggsBook.currentUser
     });
     this.$el.html(renderedContent);
     return this;
