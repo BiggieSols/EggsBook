@@ -2,7 +2,7 @@ EggsBook.Views.CommentsView = Backbone.View.extend({
   template: JST['comments/index'],
 
   events: {
-      'submit .new-comment':'add_comment',
+    'submit .new-comment':'add_comment',
   },
 
   render: function() {
