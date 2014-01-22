@@ -14,7 +14,9 @@ EggsBook.Views.FeedView = Backbone.View.extend({
   render: function() {
     console.log("rendering view");
     this.renderTop().renderPosts();
+    this.initializeDropZone();
     return this;
+
   },
 
   renderTop: function() {
@@ -27,6 +29,36 @@ EggsBook.Views.FeedView = Backbone.View.extend({
 
     this.$el.html(renderedContent);
     return this;
+  },
+
+  initializeDropZone: function() {
+    var that = this;
+    Dropzone.options.dropZone = {
+      init: function() {
+        this.on("addedfile", function(file) { 
+          console.log(file);
+          reader.readAsDataURL(file);
+        });
+      }
+    };
+
+    this.dropzone = this.$el.find('#drop-zone');
+    console.log("got here");
+    this.dropzone.dropzone({
+      "url": "/", 
+      "autoProcessQueue": false
+    });
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      console.log(e.target.result);
+      that.photo = e.target.result;
+    };
+
+    reader.onerror = function(stuff) {
+      console.log("error", stuff);
+      console.log (stuff.getMessage());
+    };
   },
 
   renderPosts: function() {
@@ -42,17 +74,8 @@ EggsBook.Views.FeedView = Backbone.View.extend({
     
     // console.log(file);
     
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      console.log(e.target.result);
-      that.photo = e.target.result;
-    };
 
-    reader.onerror = function(stuff) {
-      console.log("error", stuff);
-      console.log (stuff.getMessage());
-    };
-    reader.readAsDataURL(file);
+    console.log("got here");
   },
 
   addPost: function(event) {
