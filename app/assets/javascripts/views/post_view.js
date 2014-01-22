@@ -27,9 +27,6 @@ EggsBook.Views.PostView = EggsBook.Views.LikableObject.extend({
                ._renderLikeButton()
                ._renderLikingUsers()
                ._renderComments();
-               // ._renderCommentSkeleton()
-               
-               // ._renderDetails();
   },
 
   _renderPostSkeleton: function() {
@@ -69,6 +66,9 @@ EggsBook.Views.PostView = EggsBook.Views.LikableObject.extend({
   _renderComments: function() {
     var comments = this.model.get('comments');
     var commentsView = new EggsBook.Views.CommentsView({collection: comments});
+
+    commentsView.post_id = this.model.id;
+
     var renderedContent = commentsView.render().$el;
     var $elToFill = this.$el.find('.post-comments');
     $elToFill.html(renderedContent);

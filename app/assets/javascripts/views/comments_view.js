@@ -1,28 +1,48 @@
 EggsBook.Views.CommentsView = Backbone.View.extend({
-  template: JST['comments/index'],
+  commentsTemplate: JST['comments/index'],
+  newCommentTemplate: JST['comments/new_comment_form'],
 
   events: {
-    'submit .new-comment':'add_comment',
+    'submit .new-comment':'addComment',
   },
 
   render: function() {
-    var renderedContent = this.template({comments: this.collection});
-    var that = this;
-    var commentView;
-    this.collection.models.forEach(function(comment) {
-      commentView = new EggsBook.Views.CommentView({model: comment});
-      that.$el.append(commentView.render().$el);
-    });
-    // this.$el.html("<div>comments view will go here</div>");
+    this._renderSkeleton()
+        ._renderComments()
+        ._renderCommentForm();
     return this;
   },
 
-  add_comment: function(event) {
+  _renderSkeleton: function() {
+    var renderedContent = this.commentsTemplate();
+    this.$el.html(renderedContent);
+    return this;
+  },
+
+  _renderComments: function() {
+    var commentView;
+    var $elToFill = this.$el.find('.comments');
+
+    this.collection.models.forEach(function(comment) {
+      commentView = new EggsBook.Views.CommentView({model: comment});
+      $elToFill.append(commentView.render().$el);
+    });
+    return this;
+  },
+
+  _renderCommentForm: function() {
+    var $elToFill = this.$el.find('.comment-form');
+    var renderedContent = this.newCommentTemplate();
+    $elToFill.html(renderedContent);
+    return this;
+  },
+
+  addComment: function(event) {
     var that = this;
     event.preventDefault();
 
     var formData = $(event.currentTarget).serializeJSON();
-    formData.comment.post_id = this.model.id;
+    formData.comment.post_id = this.post_id;
 
     var comment = new EggsBook.Models.Comment(formData.comment);
 
