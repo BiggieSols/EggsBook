@@ -46,6 +46,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
     this.dropzone.dropzone({
       "url": "/", 
       "autoProcessQueue": false,
+      "uploadMultiple": false,
       "previewTemplate": "<div class='dz-preview dz-file-preview'><div class='dz-details'><img data-dz-thumbnail /></div><div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></span></div>"
 
     });
@@ -83,7 +84,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
     this.photo = undefined;
     this.$('#post-submission-processing').toggleClass("invisible");
     this.$('#drop-zone').html("");
-    this.$('#new-post-details').text("");
+    this.$('#new-post-details').val("");
   },
 
   addPost: function(event) {
