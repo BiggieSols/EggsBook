@@ -1,8 +1,6 @@
 EggsBook.Views.FeedView = Backbone.View.extend({
   initialize: function() {
     this.collection.fetch();
-    this.listenTo(this.collection, "sync", this.render);
-    this.listenTo(this.collection, "change", this.render);
     // this.listenTo(EggsBook.feed, "sync", this.render);
   },
 
@@ -32,16 +30,9 @@ EggsBook.Views.FeedView = Backbone.View.extend({
   },
 
   renderPosts: function() {
-    if(this.collection.models.length > 0) {
-      var $posts = this.$el.find('.post-container');
-      $.each($posts, function(i) {
-        var jqPost = $posts.eq(i);
-        var id = jqPost.data('id');
-        var postModel = EggsBook.posts.get(id);
-        var postView = new EggsBook.Views.PostView({model: postModel});
-        jqPost.html(postView.render().$el);
-      });
-    }
+    var postsView = new EggsBook.Views.PostsView({collection: this.collection});
+    var $elToFill = this.$el.find('.posts-container');
+    $elToFill.html(postsView.render().$el);
     return this;
   },
 
