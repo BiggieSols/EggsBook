@@ -34,7 +34,8 @@ EggsBook.Views.CommentView = Backbone.View.extend({
 
   _renderCommentDetails: function() {
     var renderedContent = this.commentDetailsTemplate({
-      objToRender: this.model
+      objToRender: this.model,
+      user: this.model.get('user')
     });
     var $elToFill = this.$el.find('.details');
     $elToFill.html(renderedContent);

@@ -1,5 +1,6 @@
 <% var varName = 'liked_' + dataType + '_ids' %>
 
+
 <% if(_.include(currentUser.get(varName), objToRender.id)) { %>
   <button data-id="<%= objToRender.id %>" data-type="<%= dataType %>" data-action="unLike" class="unLike btn btn-primary btn-xs like-btn">Un-Like</button>
 <% } else { %>

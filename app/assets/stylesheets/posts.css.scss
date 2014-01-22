@@ -31,8 +31,8 @@
 
   .like-btn {
     float: left;
-    width: 5%;
-    font-size: 0.5em
+    width: 8%;
+    // font-size: 0.5em
   }
 
   .new-comment {
@@ -55,11 +55,15 @@
 
 .comment {
   padding: 5px 0px;
+  font-size: 0.7em;
 
   .like-btn {
     float: left;
-    width: 100%; 
-    font-size: 0.5em;
+    width: 100%;
+  }
+
+  .user-photo {
+    float:left;
   }
 
   .like-info {
@@ -67,7 +71,10 @@
   }
 
   .liking-users {
-    font-size: 0.7em;
     color: #444444;
   }
+}
+
+.user-link {
+  font-weight:bold;
 }
