@@ -6,20 +6,22 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
 
   initialize: function() {
     this.postViews = {};
-    this.listenTo(EggsBook.currentUser, "sync", this.render);
   },
 
   events: {
-    'click .friend-remove':'friendRemove',
-    'click .friend-confirm':'friendConfirm',
-    'click .friend-add':'friendAdd',
     'click #render-photos':'renderPhotos',
     'click #render-posts': 'renderPosts',
     'click #render-friends': 'renderFriends'
   },
 
   render: function() {
-    return this._renderTop().renderPosts();
+    return this._renderTop()._renderFriendButton().renderPosts();
+  },
+
+  _renderFriendButton: function() {
+    var friendButtonView = new EggsBook.Views.FriendButton({model: this.model});
+    this.$el.find('.friend-button').html(friendButtonView.render().$el);
+    return this;
   },
 
   renderFriends: function() {
@@ -90,44 +92,6 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
     var renderedContent = template(passedArgs);
     $content.html(renderedContent);
     return this;
-  },
-
-
-  friendRemove: function() {
-    console.log("attempting to remove friend");
-    var friendship = new EggsBook.Models.Friendship({"friend_id": this.model.id});
-
-    // set dummy id
-    friendship.id = -1;
-
-    friendship.destroy({
-      success: function() {
-        console.log("got here");
-        EggsBook.currentUser.fetch();
-      }, 
-    });
-  },
-
-  friendConfirm: function() {
-    console.log("attempting to confirm friend");
-    var friendship = new EggsBook.Models.Friendship({"friend_id": this.model.id});
-
-    friendship.save({}, {
-      success: function() {
-        EggsBook.currentUser.fetch();
-      }
-    });
-  },
-
-  friendAdd: function() {
-    console.log("attempting to add friend");
-    var friendRequest = new EggsBook.Models.FriendRequest({"friend_id": this.model.id});
-    friendRequest.save({}, {
-      success: function() {
-        console.log("friend request added");
-        EggsBook.currentUser.fetch();
-      }
-    });
   }
 });
 
