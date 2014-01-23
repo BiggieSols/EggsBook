@@ -2,6 +2,7 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
   template: JST['users/show'],
   photosSkeletonTemplate: JST['users/photos_skeleton'],
   friendsSkeletonTemplate: JST['users/friends_skeleton'],
+  showPhotoModalTemplate: JST['posts/show_photo_modal'],
 
   initialize: function() {
     this.postViews = {};
@@ -10,7 +11,18 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
   events: {
     'click #render-photos':'renderPhotos',
     'click #render-posts': 'renderPosts',
-    'click #render-friends': 'renderFriends'
+    'click #render-friends': 'renderFriends',
+    'click .photo': 'fillModalWithImage'
+  },
+
+  fillModalWithImage: function(event) {
+    // event.preventDefault();
+    var post = EggsBook.posts.get($(event.currentTarget).data("id"));
+    var renderedContent = this.showPhotoModalTemplate({post: post});
+
+    console.log("filling it up");
+    this.$("#large-photo-modal").html(renderedContent);
+    return this;
   },
 
   render: function() {
