@@ -1,6 +1,5 @@
 EggsBook.Views.UserProfileView = Backbone.View.extend({
   template: JST['users/show'],
-  // postsSkeletonTemplate: JST['users/posts_skeleton'],
   photosSkeletonTemplate: JST['users/photos_skeleton'],
   friendsSkeletonTemplate: JST['users/friends_skeleton'],
 
@@ -90,6 +89,9 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
         jqPhoto.html(photoView.render().$el);
       });
     }
+    this.$el.find('#user-photos').masonry({
+      columnWidth: 250, itemSelector: ".photo"
+    });
     return this;
   },
 
