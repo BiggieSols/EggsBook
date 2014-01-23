@@ -18,12 +18,32 @@
     }
   }
 
+  hr {
+    margin: 3px;
+  }
+
+
   .photo {
     img {
       max-width: 220px;
       cursor: pointer;
     }
     padding: 5px 0px;
+  }
+
+  .friend {
+   img {
+    margin: 10px 5px;
+   }
+
+    .friend-info-container {
+      text-align: center;
+    }
+
+    .friend-name {
+      text-align: center;
+      font-size: 1.3em;
+    }
   }
 }
 
