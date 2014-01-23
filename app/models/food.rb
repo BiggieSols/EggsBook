@@ -2,6 +2,7 @@ class Food < ActiveRecord::Base
   attr_accessible :name, :image
 
   has_attached_file :image, styles: {
+    large: "400x400",
     medium: "150x150",
     icon: "40x40"
   }

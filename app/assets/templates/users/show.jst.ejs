@@ -8,12 +8,22 @@
         <img src="<%= user.get('photo_urls').medium %>" class="thumbnail">
       </div>
 
-      <div class="friend-button">
+          <div class="user-name">
+            <%= user.get('name') %>
+        </div>
+
+          <div class="friend-button">
+          </div>
+      <br>
+      <br>
+
+      <div class="favorite-foods-heading">
+        Breakfast Selections
       </div>
       <% user.get('favorite_food_ids').forEach(function(food_id) { %>
       <% var food = foods.get(food_id) %>
       <% if(food) { %>
-      <img src="<%= food.get('photo_urls').medium %>">
+      <img src="<%= food.get('photo_urls').medium %>" class="profile-food-photo thumbnail">
       <% } %>
       <% }); %>
     </div>
