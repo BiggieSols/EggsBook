@@ -37,16 +37,27 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
     return this;
   },
 
-  renderFriends: function() {
-    var friendsView = new EggsBook.Views.FriendsView({model: this.model});
-    $('#profile-content').html(friendsView.render().$el);
+  _switchActiveTab: function(event) {
+    if(event) {
+      this.$('.active').removeClass("active");
+      $(event.currentTarget).addClass("active");
+    }
   },
 
-  renderPhotos: function() {
+  renderFriends: function(event) {
+    this._switchActiveTab(event);
+    var friendsView = new EggsBook.Views.FriendsView({model: this.model});
+    $('#profile-content').html(friendsView.render().$el);
+    return this;
+  },
+
+  renderPhotos: function(event) {
+    this._switchActiveTab(event);
     return this._renderPhotosSkeleton()._renderIndividualPhotos();
   },
 
-  renderPosts: function() {
+  renderPosts: function(event) {
+    this._switchActiveTab(event);
     var postsView = new EggsBook.Views.PostsView({
       collection: this.model.get('posts')
     });

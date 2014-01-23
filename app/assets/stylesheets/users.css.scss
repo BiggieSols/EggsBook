@@ -16,8 +16,14 @@
   nav {
     li {
       width: 33%;
-      border: 1px solid gray;
+
+      a {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.3em;
+      }
     }
+    background-color: inherit;
   }
 
   hr {
@@ -42,7 +48,7 @@
 
   .friend {
    background-color: rgba(255, 255, 255, 0.5);
-   
+
    img {
     margin: 10px 5px;
    }

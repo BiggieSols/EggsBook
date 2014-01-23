@@ -1,15 +1,15 @@
 <div class="user">
   <br><br>
 
-  <div class="friend-button">
-  </div>
 
   <div class="row">
     <div class="col-xs-4 left-col">
       <div class="profile-picture">
-        <img src="<%= user.get('photo_urls').medium %>">
+        <img src="<%= user.get('photo_urls').medium %>" class="thumbnail">
       </div>
 
+      <div class="friend-button">
+      </div>
       <% user.get('favorite_food_ids').forEach(function(food_id) { %>
       <% var food = foods.get(food_id) %>
       <% if(food) { %>
@@ -38,7 +38,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="user-profile-nav">
-          <ul class="nav navbar-nav">
+          <ul class="nav nav-pills">
             <li id="render-posts" class="active"><a>Posts</a></li>
             <li id="render-photos"><a>Photos</a></li>
             <li id="render-friends"><a>Friends</a></li>
