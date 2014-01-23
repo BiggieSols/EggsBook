@@ -4,8 +4,9 @@
 
 .posting-user-image {
   float:left;
-  padding: 2px;
-  max-width: 100%;
+  margin-left: 6%;
+  width: 100%;
+  // max-width: 100%;
 }
 
 .post-username {
@@ -20,7 +21,7 @@
   margin: 10px 0px;
 
   .post-image {
-    // max-width: 100%;
+    width: 100%;
     float: left;
   }
 
@@ -31,6 +32,7 @@
   .like-btn {
     float: left;
     width: 8%;
+    margin-right: 3px;
     // font-size: 0.5em
   }
 

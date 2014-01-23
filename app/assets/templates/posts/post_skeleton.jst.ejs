@@ -2,21 +2,23 @@
 
 <div class="post">
   <div class="row">
-    <div class="col-xs-1">
+    <div class="col-xs-1 col-sm-2">
       <a href="#/users/<%= post.get('user').id %>">
         <img src="<%= post.get('user').get('photo_urls').small %>" class="posting-user-image">
       </a>
     </div>
-    <div class="col-xs-10">
+    <div class="col-xs-10 col-sm-9">
       <div class="row">
         <a href="#/users/<%= post.get('user').id %>" class="post-username">
           <%= post.get('user').get('name') %>
         </a>
         <%= post.get('details') %>
       </div>
-      <div class="row">
-        <img src="<%= post.get('image_urls').medium %>" class="post-image">
-      </div>
+      <% if(post.get('image_urls').medium) { %>
+        <div class="row">
+          <img src="<%= post.get('image_urls').medium %>" class="post-image img-thumbnail">
+        </div>
+      <% } %>
 
       <div class="row like-info">
         <!-- post like/unlike button -->
