@@ -61,7 +61,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
   },
 
   removeDropZoneText: function() {
-    this.$(".dz-details").addClass("white-bgcolor");
+    this.$(".drop-zone-text").css("display", "none");
   },
 
   renderPosts: function() {
@@ -91,8 +91,9 @@ EggsBook.Views.FeedView = Backbone.View.extend({
   resetNewPostForm: function() {
     this.photo = undefined;
     this.$('#post-submission-processing').toggleClass("invisible");
-    this.$('#drop-zone').html("");
+    this.$('.dz-preview').remove();
     this.$('#new-post-details').val("");
+    this.$(".drop-zone-text").css("display", "block");
   },
 
   addPost: function(event) {
@@ -109,7 +110,6 @@ EggsBook.Views.FeedView = Backbone.View.extend({
 
     post.save({}, {
       success: function(resp) {
-        console.log(post);
         EggsBook.posts.add(post);
         EggsBook.feed.add(post);
         that.resetNewPostForm();

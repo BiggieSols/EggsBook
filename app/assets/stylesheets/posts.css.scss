@@ -85,8 +85,9 @@
   display: none;
   height: 113px;
   width: 100%;
-  // background-color: white;
-  background-image: url('dropzone_image.png');
+  background-color: white;
+  // background-image: url('dropzone_image.png');
+  // background-repeat:no-repeat;
   // background-image: url('loading_spinner.gif');
   padding: 5px 10px;
   color: #bbbbbb;
@@ -101,9 +102,10 @@
   }
 }
 
-// .drop-zone-text {
-//   padding-top: 40px;
-// }
+.drop-zone-text {
+  padding-top: 35px;
+  pointer-events: none;
+}
 
 #new-post {
   margin-left: 3px;
