@@ -113,7 +113,7 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
       });
     }
     this.$el.find('#user-photos').masonry({
-      columnWidth: 250, itemSelector: ".photo"
+      columnWidth: 200, itemSelector: ".photo"
     });
     return this;
   },

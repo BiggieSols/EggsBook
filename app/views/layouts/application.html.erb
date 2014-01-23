@@ -48,16 +48,19 @@
 
 
   <div class="container">
-    <% if flash[:errors] %>
-    <div><%= flash[:errors].split(", ")%></div>
-    <% elsif flash[:success] %>
-    <div><%= flash[:success]%></div>
-    <% end %>
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+      <% if flash[:errors] %>
+      <div><%= flash[:errors].split(", ")%></div>
+      <% elsif flash[:success] %>
+      <div><%= flash[:success]%></div>
+      <% end %>
 
-    <div id="content">
+      <div id="content">
 
-      <%= yield %>
-
+        <%= yield %>
+</div>
+      </div>
     </div>
   </div>
 </body>
