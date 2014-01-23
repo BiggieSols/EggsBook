@@ -1,4 +1,5 @@
 <% if(user.id !== currentUser.id) { %>
+<h3>Mutual Friends</h3>
   <div id="mutual-friends">
     <% currentUser.mutualFriends(user).forEach(function(friend_id) { %>
       <div class="friend" data-id="<%= friend_id %>">
@@ -9,6 +10,7 @@
 <% } %>
 
 <div id="user-friends">
+  <h3>All Friends</h3>
   <% user.get('friend_ids').forEach(function(friend_id) { %>
     <div class="friend" data-id="<%= friend_id %>">
       user friend goes here

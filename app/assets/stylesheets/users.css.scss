@@ -4,7 +4,9 @@
 
 .user {
   .profile-picture {
-    max-width: 100%;
+    img {
+      max-width: 100%;
+    }
   }
 
   #user-posts {
@@ -39,6 +41,8 @@
   }
 
   .friend {
+   background-color: rgba(255, 255, 255, 0.5);
+   
    img {
     margin: 10px 5px;
    }
