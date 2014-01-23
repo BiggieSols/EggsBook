@@ -1,2 +1,14 @@
-<img src="<%= user.get('photo_urls').medium %>">
-mutual friends count will go here
+<div class="row">
+  <div class="col-xs-1">
+    <a href=<%= "/#/users/" + user.get('id') %> >
+      <img src="<%= user.get('photo_urls').small %>">
+    </a>
+  </div>
+  <div class="col-xs-10">
+    <% var mutualFriends = currentUser.mutualFriends(user) %>
+    <%= mutualFriends.length %> mutual friends
+
+    <span class="mutual-friends">
+    </span>
+  </div>
+</div>

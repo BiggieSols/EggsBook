@@ -24,12 +24,6 @@ EggsBook.Views.FriendsView = Backbone.View.extend({
       var jqFriend = $friends.eq(i);
       var id = jqFriend.data('id');
       var friend = EggsBook.users.get(id);
-
-
-      // console.log("friend is below");
-      // console.log(friend);
-
-
       var friendView = new EggsBook.Views.FriendView({model: friend});
       jqFriend.html(friendView.render().$el);
     });

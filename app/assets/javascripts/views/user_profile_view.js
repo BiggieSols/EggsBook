@@ -15,7 +15,9 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
   },
 
   render: function() {
-    return this._renderTop()._renderFriendButton().renderPosts();
+    return this._renderTop()
+               ._renderFriendButton()
+               .renderPosts();
   },
 
   _renderFriendButton: function() {
