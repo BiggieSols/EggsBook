@@ -24,7 +24,7 @@
       <% user.get('favorite_food_ids').forEach(function(food_id) { %>
       <% var food = foods.get(food_id) %>
       <% if(food) { %>
-      <img src="<%= food.get('photo_urls').large %>" class="profile-food-photo thumbnail">
+      <img src="<%= food.get('photo_urls').medium %>" class="profile-food-photo thumbnail">
       <% } %>
       <% }); %>
     </div>
