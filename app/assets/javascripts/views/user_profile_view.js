@@ -85,7 +85,6 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
   },
 
 
-  // move to renderAbstracted
   _renderIndividualPosts: function() {
     if(EggsBook.posts.models.length > 0) {
       var $posts = this.$el.find('.post-container');
@@ -100,7 +99,6 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
     return this;
   },
 
-  // move to renderAbstracted
   _renderIndividualPhotos: function() {
     if(EggsBook.posts.models.length > 0) {
       var $photos = this.$el.find('.photo');
@@ -112,9 +110,17 @@ EggsBook.Views.UserProfileView = Backbone.View.extend({
         jqPhoto.html(photoView.render().$el);
       });
     }
-    this.$el.find('#user-photos').masonry({
-      columnWidth: 200, itemSelector: ".photo"
-    });
+    var that = this;
+
+
+    // not sure why i need to set a timeout here.
+    setTimeout(function(){
+      console.log(that.$el.find('#user-photos'));
+      that.$el.find('#user-photos').masonry({
+        columnWidth: 200, itemSelector: ".photo"
+      });
+    },100);
+
     return this;
   },
 
