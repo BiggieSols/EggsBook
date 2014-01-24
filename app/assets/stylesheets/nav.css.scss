@@ -38,5 +38,17 @@
 body { 
   padding-top: 50px;
   font-family: lato, sans-serif;
+
+}
+
+.logged_in {
   background: #c1eaea;
+}
+
+.logged_out {
+  background: url(breakfast-egg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;    
 }

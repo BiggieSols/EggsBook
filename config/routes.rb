@@ -27,7 +27,7 @@ EggsBook::Application.routes.draw do
   post 'users/:friend_id/friendships', to: 'friendships#create', as: "friendship"
   delete 'users/:friend_id/friendships/:id', to: 'friendships#destroy', as: "friendship"
 
-  post 'users/:friend_id/friend_requests', to: 'friend_requests#create', as: "friend_request"
+  post 'users/:friend_id/friend_requests', to: 'friend_requests#create', as: "friend_request" 
   delete 'users/:friend_id/friend_requests/:id', to: 'friend_requests#destroy', as: "friend_request"
 
   # may not need this
@@ -36,9 +36,10 @@ EggsBook::Application.routes.draw do
 
   get 'about', to: 'static_pages#about'
   get 'contact', to: 'static_pages#contact'
+  get 'landing', to: 'static_pages#landing'
 
 
   # root to: 'feeds#show'
   # temp change
-  root to: 'static_pages#about'
+  root to: 'static_pages#landing'
 end

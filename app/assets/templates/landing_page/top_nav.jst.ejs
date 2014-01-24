@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default navbar-fixed-top" id="top-nav">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/#/feed">
+      <img src="/assets/EggsBook_logo_transparent_background.png" class="brand">
+    </a>
+
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="/#/feed" class="top-nav-link">
+          Feed
+        </a>
+      </li>
+      <li>
+        <a href=<%= "/#/users/" + user.id %>>
+          <img src="<%= user.get('photo_urls').icon %>">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

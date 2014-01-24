@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user])
     if @user
       log_in! @user
-      redirect_to root_url
+      redirect_to "/#/feed"
     else
       flash[:errors] = ["invalid username or password"]
       # this part below is only for rails, can remove w/ backbone
@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out!
-    redirect_to new_session_url
+    redirect_to root_url
   end
 end

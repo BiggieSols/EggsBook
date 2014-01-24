@@ -9,8 +9,14 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body>
 
+<% if logged_in? %>
+  <body class="logged_in">
+<% else %>
+  <body class="logged_out">
+<% end %>
+
+<% if logged_in? %>
   <nav class="navbar navbar-default navbar-fixed-top" id="top-nav">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -43,9 +49,7 @@
       </ul>
     </div>
   </nav>
-
-
-
+<% end %>
 
   <div class="container">
     <div class="row">
