@@ -61,6 +61,17 @@ EggsBook::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: 'eggsbook',
+      access_key_id: ENV["ACCESS_KEY_ID"],
+      secret_access_key: ENV["SECRET_ACCESS_KEY"],
+      s3_host_name: 's3-us-west-1.amazonaws.com'
+    }
+  }
+
+
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
