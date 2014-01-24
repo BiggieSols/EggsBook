@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   attr_accessible :details, :image
 
   has_attached_file :image, styles: {
-    large: "600x600",
+    large: "1000x1000",
     medium: "300x300",
     small: "40x40"
   }

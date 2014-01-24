@@ -15,9 +15,9 @@
         <%= post.get('details') %>
       </div>
       
-      <% if(post.get('image_urls').medium) { %>
+      <% if(post.get('image_urls').large) { %>
         <div class="row">
-          <img src="<%= post.get('image_urls').medium %>" class="post-image img-thumbnail">
+          <img src="<%= post.get('image_urls').large %>" class="post-image img-thumbnail">
         </div>
       <% } %>
 
