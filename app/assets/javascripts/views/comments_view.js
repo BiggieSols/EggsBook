@@ -40,8 +40,10 @@ EggsBook.Views.CommentsView = Backbone.View.extend({
   addComment: function(event) {
     var that = this;
     event.preventDefault();
-
     var formData = $(event.currentTarget).serializeJSON();
+
+    this.$el.find('#comment_details').prop("disabled", true);
+
     formData.comment.post_id = this.post_id;
 
     var comment = new EggsBook.Models.Comment(formData.comment);
