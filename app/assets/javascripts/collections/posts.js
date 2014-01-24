@@ -20,7 +20,7 @@ EggsBook.Collections.Posts = Backbone.Collection.extend({
         photoPosts.push(post);
       }
     });
-
+    
     return photoPosts;
   }
 });

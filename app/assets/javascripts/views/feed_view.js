@@ -110,6 +110,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
         EggsBook.posts.add(post);
         EggsBook.feed.add(post);
         that.resetNewPostForm();
+        EggsBook.currentUser.fetch();
       },
     });
   }
