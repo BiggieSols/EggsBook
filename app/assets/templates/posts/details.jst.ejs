@@ -1,6 +1,6 @@
 <% var user = objToRender.get('user') %>
 <a href="#/users/<%= user.id %>">
-  <img src="<%= user.get('photo_urls').icon %>">
+  <img src="<%= user.get('photo_urls').small %>">
   <%= user.escape('name') %>
 </a>
 <span class="comment-text" style="font-size"><%= objToRender.escape('details') %></span>
