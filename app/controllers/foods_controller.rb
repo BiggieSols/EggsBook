@@ -23,9 +23,9 @@ class FoodsController < ApplicationController
   def update
     @food = Food.find(params[:id])
     if @food.update_attributes(params[:food])
-      redirect_to foods_url
+      render json: @food
     else
-      render @food.errors
+      render json: @food.errors
     end
   end
 
