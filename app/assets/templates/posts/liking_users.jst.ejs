@@ -2,7 +2,7 @@
 <% if(likingUsers.length > 0) { %>
   <div>liked by 
     <% _.each(likingUsers, function(user) { %>
-      <a href="#/users/<%= user.id %>"><%= user.get('name') %></a>
+      <a href="#/users/<%= user.id %>"><%= user.escape('name') %></a>
     <% }); %>
   </div>  
 <% }; %>

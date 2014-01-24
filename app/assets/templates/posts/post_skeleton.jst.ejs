@@ -10,9 +10,9 @@
     <div class="col-xs-10 col-sm-9">
       <div class="row">
         <a href="#/users/<%= post.get('user').id %>" class="post-username">
-          <%= post.get('user').get('name') %>
+          <%= post.get('user').escape('name') %>
         </a>
-        <%= post.get('details') %>
+        <%= post.escape('details') %>
       </div>
       
       <% if(post.get('image_urls').large) { %>

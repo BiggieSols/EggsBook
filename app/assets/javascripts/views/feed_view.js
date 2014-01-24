@@ -55,7 +55,6 @@ EggsBook.Views.FeedView = Backbone.View.extend({
       "autoProcessQueue": false,
       "uploadMultiple": false,
       "previewTemplate": "<div class='dz-preview dz-file-preview'><div class='dz-details'><img data-dz-thumbnail /></div><div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></span></div>"
-
     });
   },
 

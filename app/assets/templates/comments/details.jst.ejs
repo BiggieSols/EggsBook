@@ -1,6 +1,6 @@
-  <a href="#/users/<%= user.id %>" class="user-link">
-    <%= user.get('name') %>
-  </a> 
+<a href="#/users/<%= user.id %>" class="user-link">
+  <%= user.escape('name') %>
+</a> 
 <span class="comment-text">
-  <%= objToRender.get('details') %>
+  <%= objToRender.escape('details') %>
 </span>
