@@ -3,7 +3,8 @@ class Food < ActiveRecord::Base
 
   has_attached_file :image, styles: {
     large: "600x600",
-    medium: "150x150",
+    medium: "300x300",
+    small: "150x150",
     icon: "40x40"
   }
 

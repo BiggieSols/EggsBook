@@ -32,7 +32,7 @@ EggsBook::Application.routes.draw do
 
   # may not need this
   resources :foods
-  # resources :user_foods, only: [:create, :destroy]
+  resources :user_foods, only: [:create, :destroy, :edit, :update]
 
   get 'about', to: 'static_pages#about'
   get 'contact', to: 'static_pages#contact'
