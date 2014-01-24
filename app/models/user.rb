@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_attached_file :profile_picture, styles: {
     large: "600x600",
     medium: "300x300",
-    small: "70x70",
+    small: "150x150",
     icon: "40x40"
   }
 
