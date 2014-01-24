@@ -2,7 +2,16 @@ class UsersController < ApplicationController
   skip_before_filter :require_login, only: [:new, :create]
 
   def index
-    @users = User.all(include: [:posts, :comments, :friends])
+    @users = User.all(include: [:comments, :friends, :posts => 
+                                  [
+                                    :posting_user, 
+                                    :liking_users, 
+                                    :comments => 
+                                      [
+                                        :user, :liking_users
+                                      ]
+                                  ]
+                      ])
   end
 
   def new

@@ -3,7 +3,6 @@ EggsBook.Views.PostsView = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.collection, "sync", this.render);
-    // this.listenTo(this.collection, "change", this.render);
   },
 
   render: function() {
@@ -24,7 +23,6 @@ EggsBook.Views.PostsView = Backbone.View.extend({
 
     this.collection.models.forEach(function(post) {
       postView = new EggsBook.Views.PostView({model: post});
-      // $elToFill.append("<div>post will go here</div>");
       $elToFill.append(postView.render().$el);
     });
     return this;

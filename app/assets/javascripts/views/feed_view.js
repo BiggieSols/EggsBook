@@ -11,7 +11,6 @@ EggsBook.Views.FeedView = Backbone.View.extend({
   template: JST['feed/show'],
 
   render: function() {
-    console.log("rendering view");
     this.renderTop().renderPosts();
     this.initializeDropZone();
     return this;
@@ -24,7 +23,7 @@ EggsBook.Views.FeedView = Backbone.View.extend({
       currentUser: EggsBook.currentUser,
       feed: this.collection
     });
-
+    
     this.$el.html(renderedContent);
     return this;
   },
