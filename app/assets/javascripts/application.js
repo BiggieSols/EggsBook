@@ -19,6 +19,7 @@
 //= require fileHandler
 //= require dropzone
 //= require masonry
+//= require google_analytics
 //= require eggs_book
 //= require_tree ../templates
 //= require_tree ./models
