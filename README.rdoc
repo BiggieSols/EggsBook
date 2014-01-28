@@ -1,4 +1,4 @@
-![landing page view](https://raw2.github.com/BiggieSols/EggsBook/master/app/assets/images/github_readme_images/EggsBook_landing_page.png)
+[![landing page view](https://raw2.github.com/BiggieSols/EggsBook/master/app/assets/images/github_readme_images/EggsBook_landing_page.png)]
 
 == EggsBook: the social network for people who love breakfast
 
