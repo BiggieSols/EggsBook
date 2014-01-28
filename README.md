@@ -1,6 +1,6 @@
 ![landing page](https://raw2.github.com/BiggieSols/EggsBook/master/app/assets/images/github_readme_images/EggsBook_landing_page.png)
 
-Live version: http://herokuapp.eggsbook.com
+Live version: http://eggsbook.herokuapp.com
 
 <h1>EggsBook<h1> <h3>the social network for people who love breakfast<h3>
 
