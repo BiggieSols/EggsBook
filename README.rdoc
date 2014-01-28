@@ -1,3 +1,5 @@
+![landing page view](https://raw2.github.com/BiggieSols/EggsBook/master/app/assets/images/github_readme_images/EggsBook_landing_page.png)
+
 == EggsBook: the social network for people who love breakfast
 
 This is a demo project with a limited set of facebook features, built with Ruby on Rails and Backbone.js
