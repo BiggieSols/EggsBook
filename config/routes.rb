@@ -1,15 +1,11 @@
 EggsBook::Application.routes.draw do
   resources :users do
-    # resources :feeds, only: [:show]
     resources :posts, only: [:index]
 
   end
 
-  # temp?
-  ###########################################
   resources :posts, only: [:index]
   resources :comments, only: [:index, :show]
-  ###########################################
 
   get '/feed', to: 'feeds#show', as: "feed"
 
@@ -37,7 +33,6 @@ EggsBook::Application.routes.draw do
   get 'about', to: 'static_pages#about'
   get 'contact', to: 'static_pages#contact'
   get 'landing', to: 'static_pages#landing'
-
 
   # root to: 'feeds#show'
   # temp change

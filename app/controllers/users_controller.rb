@@ -2,14 +2,13 @@ class UsersController < ApplicationController
   skip_before_filter :require_login, only: [:new, :create]
 
   def index
-    @users = User.all(include: [:comments, :friends, :posts => 
-                                  [
-                                    :posting_user, 
-                                    :liking_users, 
-                                    :comments => 
-                                      [
-                                        :user, :liking_users
-                                      ]
+    @users = User.all(include: [:comments, :friends, :posts => [
+                                  :posting_user, 
+                                  :liking_users, 
+                                  :comments => 
+                                    [
+                                      :user, :liking_users
+                                    ]
                                   ]
                       ])
   end
@@ -49,27 +48,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def photos
-    @photos = User.find(params[:id])
-                  .posts
-                  .where("image_file_name != ?", "nil")
-
-    render json: @photos
-  end
-
-  def friends
-    @user = User.find(params[:id])
-    @friends = @user.friends
-
-    if @user != current_user
-      @mutual_friends = current_user.friends & @user.friends
-    else
-      @mutual_friends = []
-    end
-
-    render json: @friends
-  end
-
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
@@ -87,4 +65,27 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to new_user_url
   end
+
+  # not using this
+  # def photos
+  #   @photos = User.find(params[:id])
+  #                 .posts
+  #                 .where("image_file_name != ?", "nil")
+
+  #   render json: @photos
+  # end
+
+  # not using this
+  # def friends
+  #   @user = User.find(params[:id])
+  #   @friends = @user.friends
+
+  #   if @user != current_user
+  #     @mutual_friends = current_user.friends & @user.friends
+  #   else
+  #     @mutual_friends = []
+  #   end
+
+  #   render json: @friends
+  # end
 end

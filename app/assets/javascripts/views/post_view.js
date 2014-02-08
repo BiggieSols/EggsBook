@@ -16,6 +16,8 @@ EggsBook.Views.PostView = EggsBook.Views.LikableObject.extend({
     return this.render_post_piecewise();
   },
 
+
+  // TODO: replace render function with this
   render_post_piecewise: function() {
     return this._renderPostSkeleton()
                ._renderLikeButton()

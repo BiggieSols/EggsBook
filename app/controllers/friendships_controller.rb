@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
     other_user_id = params[:friend_id]
     friendship_1, friendship_2 = current_user.confirm_friend_request(other_user_id)
 
-    # ADD THIS AFTER TESTING
+    # only add friendship if both directions of relationship can be created
     ActiveRecord::Base.transaction do
       if friendship_1.save  && friendship_2.save
         flash.now[:success] = "request approved!"

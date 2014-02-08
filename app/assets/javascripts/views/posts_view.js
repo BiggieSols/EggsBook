@@ -2,10 +2,11 @@ EggsBook.Views.PostsView = Backbone.View.extend({
   postsTemplate: JST['posts/index'],
 
   initialize: function() {
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenToOnce(this.collection, "sync", this.render);
   },
 
   render: function() {
+    console.log("rendering posts!");
     this._renderSkeleton()
         ._renderPosts();
     return this;

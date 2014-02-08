@@ -27,6 +27,7 @@ EggsBook.Views.LikableObject = Backbone.View.extend({
       // set dummy id so we can destroy the object. 
       // destroy is based on the current_user and post_id or comment_id server side, 
       // not the id of the PostLike or CommentLike object
+      // TODO: replace with backbone model override to change DELETE url
       likeObj.id = -1;
       likedObjIds = _.without(likedObjIds, dataId);
 
@@ -59,7 +60,7 @@ EggsBook.Views.LikableObject = Backbone.View.extend({
       _unLike();
     }
 
-    // can't get event listeners to work here...
+    // TODO: replace with event listener. merge listenTo call in initializer here into sub-classes (PostView, CommentView)
     this.render();
   },
 });

@@ -6,11 +6,6 @@ EggsBook.Models.User = Backbone.Model.extend({
     this.listenTo(EggsBook.foods, "sync", this.render);
   },
 
-  // parse: function(response) {
-  //   console.log(response);
-  //   return response;
-  // },
-
   parse: function(response) {
     var posts = new EggsBook.Collections.Posts(response.posts, {parse: true});
     response.posts = posts;

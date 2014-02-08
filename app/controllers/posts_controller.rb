@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
   def index
-    # @posts = Post.all
-    # render json: @posts
     @posts = Post.all(include: [:posting_user, 
                       :liking_users, 
                       :comments => [:user, :liking_users] 

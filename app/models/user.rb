@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments #comments that I made, not comments made on my posts
 
-  # Polymorophic inheritance. Rails does not support polymorphic has_many_through with the generic "likable_object" e.g. user has_many liked_objects
+  # Polymorophic inheritance. 
+  #   Note: Rails does not support polymorphic has_many_through 
+  #   with the generic "likable_object" e.g. user has_many liked_objects
   has_many :likes
   has_many :liked_posts, through: :likes, source: :likable_object, source_type: 'Post'
   has_many :liked_comments, through: :likes, source: :likable_object, source_type: 'Comment'
@@ -98,6 +100,8 @@ class User < ActiveRecord::Base
     # remove the previously existing friend request
     # need to reverse order here since the other user initially requested the friendship
     request = FriendRequest.find_by_user_id_and_friend_id(other_user_id, self.id)
+
+    # TODO: handle case when friend request does not exist
     request.destroy
 
     # add two new friendships (bi-directional)
