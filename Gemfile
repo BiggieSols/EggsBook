@@ -38,7 +38,9 @@ gem 'jbuilder'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+group :development do
+  gem 'debugger'
+end
 
 # user-added gems
 gem 'paperclip'
