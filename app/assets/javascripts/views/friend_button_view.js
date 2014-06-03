@@ -31,7 +31,7 @@ EggsBook.Views.FriendButton = Backbone.View.extend({
       success: function() {
         console.log("got here");
         EggsBook.currentUser.fetch();
-      }, 
+      },
     });
   },
 

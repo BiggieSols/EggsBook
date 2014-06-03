@@ -14,6 +14,6 @@ class FeedsController < ApplicationController
                               :posting_user, 
                               :liking_users, 
                               :comments => [:user, :liking_users] 
-                            ])
+                            ])[0..10]
   end
 end
